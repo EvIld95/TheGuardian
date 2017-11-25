@@ -12,6 +12,12 @@
 		F71B746F1FC7562800BE0567 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71B746D1FC7562800BE0567 /* Main.storyboard */; };
 		F71B74711FC7562800BE0567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F71B74701FC7562800BE0567 /* Assets.xcassets */; };
 		F71B74741FC7562800BE0567 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71B74721FC7562800BE0567 /* LaunchScreen.storyboard */; };
+		F71B747D1FC7790000BE0567 /* GuardianMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B747C1FC7790000BE0567 /* GuardianMainButton.swift */; };
+		F71B74801FC77C3000BE0567 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B747F1FC77C3000BE0567 /* BackgroundView.swift */; };
+		F71B74851FC8CC1900BE0567 /* GuardianCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B74841FC8CC1900BE0567 /* GuardianCollectionViewCell.swift */; };
+		F71B74871FC8D2E100BE0567 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B74861FC8D2E100BE0567 /* StreamManager.swift */; };
+		F71B748A1FC9E15900BE0567 /* WarningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71B74891FC9E15900BE0567 /* WarningView.xib */; };
+		F71B748C1FC9E34200BE0567 /* WarningSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B748B1FC9E34200BE0567 /* WarningSectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		F71B74701FC7562800BE0567 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F71B74731FC7562800BE0567 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F71B74751FC7562800BE0567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F71B747C1FC7790000BE0567 /* GuardianMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianMainButton.swift; sourceTree = "<group>"; };
+		F71B747F1FC77C3000BE0567 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		F71B74841FC8CC1900BE0567 /* GuardianCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianCollectionViewCell.swift; sourceTree = "<group>"; };
+		F71B74861FC8D2E100BE0567 /* StreamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
+		F71B74891FC9E15900BE0567 /* WarningView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WarningView.xib; sourceTree = "<group>"; };
+		F71B748B1FC9E34200BE0567 /* WarningSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningSectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +66,52 @@
 		F71B74681FC7562800BE0567 /* GuardianApp */ = {
 			isa = PBXGroup;
 			children = (
+				F71B74881FC9E13F00BE0567 /* Views */,
+				F71B74831FC8CC0300BE0567 /* CollectionView */,
+				F71B747E1FC77C2000BE0567 /* BackgroundView */,
+				F71B747B1FC778E900BE0567 /* CustomButtons */,
 				F71B74691FC7562800BE0567 /* AppDelegate.swift */,
 				F71B746B1FC7562800BE0567 /* ViewController.swift */,
 				F71B746D1FC7562800BE0567 /* Main.storyboard */,
 				F71B74701FC7562800BE0567 /* Assets.xcassets */,
 				F71B74721FC7562800BE0567 /* LaunchScreen.storyboard */,
 				F71B74751FC7562800BE0567 /* Info.plist */,
+				F71B74861FC8D2E100BE0567 /* StreamManager.swift */,
 			);
 			path = GuardianApp;
+			sourceTree = "<group>";
+		};
+		F71B747B1FC778E900BE0567 /* CustomButtons */ = {
+			isa = PBXGroup;
+			children = (
+				F71B747C1FC7790000BE0567 /* GuardianMainButton.swift */,
+			);
+			path = CustomButtons;
+			sourceTree = "<group>";
+		};
+		F71B747E1FC77C2000BE0567 /* BackgroundView */ = {
+			isa = PBXGroup;
+			children = (
+				F71B747F1FC77C3000BE0567 /* BackgroundView.swift */,
+			);
+			path = BackgroundView;
+			sourceTree = "<group>";
+		};
+		F71B74831FC8CC0300BE0567 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				F71B74841FC8CC1900BE0567 /* GuardianCollectionViewCell.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		F71B74881FC9E13F00BE0567 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F71B74891FC9E15900BE0567 /* WarningView.xib */,
+				F71B748B1FC9E34200BE0567 /* WarningSectionView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F71B74741FC7562800BE0567 /* LaunchScreen.storyboard in Resources */,
+				F71B748A1FC9E15900BE0567 /* WarningView.xib in Resources */,
 				F71B74711FC7562800BE0567 /* Assets.xcassets in Resources */,
 				F71B746F1FC7562800BE0567 /* Main.storyboard in Resources */,
 			);
@@ -136,7 +187,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F71B747D1FC7790000BE0567 /* GuardianMainButton.swift in Sources */,
 				F71B746C1FC7562800BE0567 /* ViewController.swift in Sources */,
+				F71B74851FC8CC1900BE0567 /* GuardianCollectionViewCell.swift in Sources */,
+				F71B74871FC8D2E100BE0567 /* StreamManager.swift in Sources */,
+				F71B74801FC77C3000BE0567 /* BackgroundView.swift in Sources */,
+				F71B748C1FC9E34200BE0567 /* WarningSectionView.swift in Sources */,
 				F71B746A1FC7562800BE0567 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
