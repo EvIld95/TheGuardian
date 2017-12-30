@@ -11,21 +11,27 @@ import AVKit
 import AVFoundation
 
 class ViewController: UIViewController {
-
     
     @IBOutlet weak var playerView: UIView!
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var contentView: UIView!
     
-    
     var lastTouchedButton: UIButton?
+    var lastVisitedPlace: String!
+    var firstLayoutSubview = true
     @IBOutlet weak var warningButton: UIButton!
-    var guardianPlaces = ["Salon", "Hall", "Garage", "Bedroom", "Kitchen", "Outside"]
+    var lastSelectedIndexPath: IndexPath?
+    
+    var guardianPlaces = ["Salon", "Hall", "Garage", "Bedroom", "Kitchen", "Outside", "Child Room", "Dining Room", "Tarrace"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        lastVisitedPlace = guardianPlaces.first!
         
-        setupCustomView()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1 ) {
+            self.setupCustomView(sv: .WarningView)
+        }
+        
         setupNavBar()
         warningButton.imageView?.contentMode = .scaleAspectFit
         buttonSelectedSetup(button: warningButton)
@@ -34,7 +40,13 @@ class ViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = nil
+        collectionView.allowsMultipleSelection = false
+        collectionView.allowsSelection = true
         collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
+        lastSelectedIndexPath =  IndexPath(item: 0, section: 0)
+        collectionView.setNeedsLayout()
+        collectionView.layoutIfNeeded()
+        collectionView.reloadItems(at: [lastSelectedIndexPath!])
         
         let videoURL = URL(string: "http://52.236.165.15:80/hls/camera.m3u8")
         let player = AVPlayer(url: videoURL!)
@@ -43,27 +55,36 @@ class ViewController: UIViewController {
         self.playerView.layer.addSublayer(playerLayer)
         player.play()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if(firstLayoutSubview) {
+            self.collectionView.reloadData()
+        }
+        firstLayoutSubview = false
     }
     
-    func setupCustomView() {
-        let customView = Bundle.main.loadNibNamed("WarningView", owner: self, options: nil)!.first as! WarningSectionView
+    func setupCustomView(sv: ViewsName) {
+        contentView.subviews.forEach { (subview) in
+            subview.removeFromSuperview()
+        }
+        let customView = Bundle.main.loadNibNamed(sv.rawValue, owner: self, options: nil)!.first as! UIView
         customView.translatesAutoresizingMaskIntoConstraints = true
         customView.autoresizingMask = []
         customView.frame.origin = contentView.bounds.origin
+        customView.isUserInteractionEnabled = true
+        customView.bringSubview(toFront: contentView)
+        customView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
         
-        customView.frame = CGRect(x: -contentView.frame.width/2, y: 0, width: contentView.frame.width, height: contentView.frame.height)
-        
-        print(customView.frame)
         contentView.addSubview(customView)
+        let displayerSection = customView as! SectionViewDisplayer
+        displayerSection.adjustSectionView(withSectionName: lastVisitedPlace)
     }
     
     func setupNavBar() {
         
-        let imageView = UIImageView(image: UIImage(named: "guardianName"))
+        let imageView = UIImageView(image: UIImage(named: "guardName"))
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         let leftButtonWidth: CGFloat = 100
         let rightButtonWidth: CGFloat = 100
@@ -99,6 +120,8 @@ class ViewController: UIViewController {
     
     @IBAction func tempButtonTouched(button: UIButton!) {
         guard lastTouchedButton != button else { return }
+        
+        
         buttonSelectedSetup(button: button)
         resetLastTouchedButton()
         lastTouchedButton = button
@@ -106,6 +129,8 @@ class ViewController: UIViewController {
     
     @IBAction func movementButtonTouched(button: UIButton!) {
         guard lastTouchedButton != button else { return }
+        
+        setupCustomView(sv: .MovementDetectionView)
         buttonSelectedSetup(button: button)
         resetLastTouchedButton()
         lastTouchedButton = button
@@ -113,6 +138,8 @@ class ViewController: UIViewController {
     
     @IBAction func warningButtonTouched(button: UIButton!) {
         guard lastTouchedButton != button else { return }
+        
+        setupCustomView(sv: .WarningView)
         buttonSelectedSetup(button: button)
         resetLastTouchedButton()
         lastTouchedButton = button
@@ -127,6 +154,8 @@ class ViewController: UIViewController {
     
     @IBAction func settingsButtonTouched(button: UIButton!) {
         guard lastTouchedButton != button else { return }
+        
+        setupCustomView(sv: .StatusSectionView)
         buttonSelectedSetup(button: button)
         resetLastTouchedButton()
         lastTouchedButton = button
@@ -134,7 +163,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -147,25 +176,39 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! GuardianCollectionViewCell
         cell.imageView.image = UIImage(named: "camera")
         cell.label.text = guardianPlaces[indexPath.row]
+        
         if(cell.isSelected) {
             cell.backgroundColor = cell.selectionColor
         } else {
             cell.backgroundColor = cell.defaultColor
         }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! GuardianCollectionViewCell
+        guard lastSelectedIndexPath!.item != indexPath.item else { return }
+        
         cell.backgroundColor = cell.selectionColor
         self.placeLabel.text = cell.label.text
+        lastVisitedPlace = cell.label.text
+        let subview = self.contentView.subviews.first! as! SectionViewDisplayer
+        subview.adjustSectionView(withSectionName: cell.label.text)
+        
+        collectionView.deselectItem(at: lastSelectedIndexPath!, animated: false)
+//        if let cellLast = collectionView.cellForItem(at: lastSelectedIndexPath!) as? GuardianCollectionViewCell {
+//            cellLast.backgroundColor = cellLast.defaultColor
+//        }
+        collectionView.reloadItems(at: [lastSelectedIndexPath!])
+        lastSelectedIndexPath = indexPath
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? GuardianCollectionViewCell
-        if let cell = cell {
-            cell.backgroundColor = cell.defaultColor
-        }
-        
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = collectionView.frame.height - 20
+        let width = height / 1.2
+        return CGSize(width: width, height: height)
     }
+    
 }

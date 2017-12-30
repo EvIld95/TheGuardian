@@ -8,14 +8,16 @@
 
 import UIKit
 
-class WarningSectionView: UIView {
+class WarningSectionView: UIView, SectionViewDisplayer {
 
     @IBOutlet weak var previewButton: UIButton!
     @IBOutlet weak var informationLabel: UILabel!
-    
     
     @IBAction func buttonTapped(button: UIButton!) {
         print("BUTTON TAPPED")
     }
     
+    func adjustSectionView(withSectionName section: String!) {
+        self.informationLabel.text = "Last danger in \(section!): \(Date().description)"
+    }
 }

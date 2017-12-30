@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-DemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MovementDetectionView" customModule="GuardianApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="494" height="262"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="aG5-DK-xMn">
+                    <rect key="frame" x="40" y="40" width="414" height="177"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mi3-Ym-nYQ">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z69-oV-EhJ">
+                    <rect key="frame" x="40" y="5" width="414" height="25"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7h-Uu-d4J">
+                    <rect key="frame" x="173" y="227" width="149" height="30"/>
+                    <color key="backgroundColor" red="0.91456967590000005" green="0.068358077739999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="149" id="DfQ-11-QJ9"/>
+                        <constraint firstAttribute="height" constant="30" id="f4k-Ys-7j4"/>
+                    </constraints>
+                    <state key="normal" title="Preview">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonTappedWithButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="pBt-7o-kxe"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="aG5-DK-xMn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="16W-g3-9zb"/>
+                <constraint firstItem="b7h-Uu-d4J" firstAttribute="top" secondItem="aG5-DK-xMn" secondAttribute="bottom" constant="10" id="4a1-sA-wzh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aG5-DK-xMn" secondAttribute="trailing" constant="40" id="4oi-Tl-5Ds"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="b7h-Uu-d4J" secondAttribute="bottom" constant="5" id="56f-By-eYR"/>
+                <constraint firstItem="b7h-Uu-d4J" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="QbM-5N-RGF"/>
+                <constraint firstItem="z69-oV-EhJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="ToS-mU-Saf"/>
+                <constraint firstItem="aG5-DK-xMn" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Zgv-vw-0yc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="z69-oV-EhJ" secondAttribute="trailing" constant="40" id="hc2-mC-gUU"/>
+                <constraint firstItem="z69-oV-EhJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="o3i-ab-mkc"/>
+                <constraint firstItem="aG5-DK-xMn" firstAttribute="top" secondItem="z69-oV-EhJ" secondAttribute="bottom" constant="10" id="yrB-nY-0eb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="collectionView" destination="aG5-DK-xMn" id="mL2-nY-73s"/>
+                <outlet property="label" destination="z69-oV-EhJ" id="2Uk-LB-pFr"/>
+            </connections>
+            <point key="canvasLocation" x="93" y="257"/>
+        </view>
+    </objects>
+</document>

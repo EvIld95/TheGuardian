@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-DemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="StatusSectionView" customModule="GuardianApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="t4j-vV-1td">
+                    <rect key="frame" x="20" y="20" width="335" height="160"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcQ-oE-rWj">
+                            <rect key="frame" x="39.5" y="0.0" width="256" height="90"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guardian [Place]: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0F8-bJ-RqN">
+                                    <rect key="frame" x="0.0" y="0.0" width="165" height="90"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ARMED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qg-MB-3FA">
+                                    <rect key="frame" x="165" y="0.0" width="91" height="90"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="25"/>
+                                    <color key="textColor" red="0.91456967590000005" green="0.068358077739999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oOI-HP-Qaj">
+                            <rect key="frame" x="100.5" y="100" width="134" height="61"/>
+                            <segments>
+                                <segment title="Armed"/>
+                                <segment title="Disarmed"/>
+                            </segments>
+                            <color key="tintColor" red="0.91456967590000005" green="0.068358077739999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="segmentedControlActionWithSegment:" destination="iN0-l3-epB" eventType="valueChanged" id="u3f-RA-2qA"/>
+                            </connections>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" red="0.91177660230000002" green="0.84940865340000005" blue="0.19109019120000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="oOI-HP-Qaj" firstAttribute="width" secondItem="t4j-vV-1td" secondAttribute="width" multiplier="0.4" id="QST-ne-Mr1"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="t4j-vV-1td" secondAttribute="bottom" constant="20" id="0G6-fR-bdd"/>
+                <constraint firstItem="t4j-vV-1td" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="7t6-Yf-eMQ"/>
+                <constraint firstItem="oOI-HP-Qaj" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="EIn-QO-mZw"/>
+                <constraint firstItem="oOI-HP-Qaj" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" id="EQ6-HY-Qs1"/>
+                <constraint firstItem="t4j-vV-1td" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Jxg-oE-VPB"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="oOI-HP-Qaj" secondAttribute="bottom" constant="20" id="WDv-cK-Wq6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="t4j-vV-1td" secondAttribute="trailing" constant="20" id="qQH-RZ-0cc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="labelPlace" destination="0F8-bJ-RqN" id="ZWV-gO-7iH"/>
+                <outlet property="labelStatus" destination="5qg-MB-3FA" id="o5a-A6-Tzt"/>
+                <outlet property="segmentedControl" destination="oOI-HP-Qaj" id="Bw3-Fg-1aI"/>
+            </connections>
+            <point key="canvasLocation" x="71" y="-23"/>
+        </view>
+    </objects>
+</document>

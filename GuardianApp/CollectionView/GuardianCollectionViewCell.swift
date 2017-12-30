@@ -22,5 +22,4 @@ class GuardianCollectionViewCell: UICollectionViewCell {
         self.layer.borderWidth = 3
         self.layer.cornerRadius = 6
     }
-
 }

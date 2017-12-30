@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D88FD46AF0E7AB925C9332D /* Pods_GuardianApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF5F32CDE4DDE00F1B3A8D1 /* Pods_GuardianApp.framework */; };
 		F71B746A1FC7562800BE0567 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B74691FC7562800BE0567 /* AppDelegate.swift */; };
 		F71B746C1FC7562800BE0567 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B746B1FC7562800BE0567 /* ViewController.swift */; };
 		F71B746F1FC7562800BE0567 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F71B746D1FC7562800BE0567 /* Main.storyboard */; };
@@ -15,12 +16,23 @@
 		F71B747D1FC7790000BE0567 /* GuardianMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B747C1FC7790000BE0567 /* GuardianMainButton.swift */; };
 		F71B74801FC77C3000BE0567 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B747F1FC77C3000BE0567 /* BackgroundView.swift */; };
 		F71B74851FC8CC1900BE0567 /* GuardianCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B74841FC8CC1900BE0567 /* GuardianCollectionViewCell.swift */; };
-		F71B74871FC8D2E100BE0567 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B74861FC8D2E100BE0567 /* StreamManager.swift */; };
 		F71B748A1FC9E15900BE0567 /* WarningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71B74891FC9E15900BE0567 /* WarningView.xib */; };
 		F71B748C1FC9E34200BE0567 /* WarningSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B748B1FC9E34200BE0567 /* WarningSectionView.swift */; };
+		F71B748E1FCC9BF700BE0567 /* StatusSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F71B748D1FCC9BF700BE0567 /* StatusSectionView.xib */; };
+		F71B74901FCC9EF200BE0567 /* StatusSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B748F1FCC9EF200BE0567 /* StatusSectionView.swift */; };
+		F71B74921FCC9F7400BE0567 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B74911FCC9F7400BE0567 /* Helper.swift */; };
+		F71B74941FCCA68700BE0567 /* SectionViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B74931FCCA68700BE0567 /* SectionViewProtocol.swift */; };
+		F71B74981FCCB26500BE0567 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B74971FCCB26500BE0567 /* LoginViewController.swift */; };
+		F771E3E41FF59F410034D763 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3E31FF59F410034D763 /* Extensions.swift */; };
+		F771E3E61FF706410034D763 /* MovementDetectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F771E3E51FF706410034D763 /* MovementDetectionView.xib */; };
+		F771E3E81FF7076D0034D763 /* MovementDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3E71FF7076D0034D763 /* MovementDetectionView.swift */; };
+		F771E3EA1FF788710034D763 /* MovementDetectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3E91FF788710034D763 /* MovementDetectionCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		25D9CBD88B2916521C8853F3 /* Pods-GuardianApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuardianApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GuardianApp/Pods-GuardianApp.debug.xcconfig"; sourceTree = "<group>"; };
+		3043F72FAC596ED918B8AE9F /* Pods-GuardianApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuardianApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GuardianApp/Pods-GuardianApp.release.xcconfig"; sourceTree = "<group>"; };
+		6DF5F32CDE4DDE00F1B3A8D1 /* Pods_GuardianApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GuardianApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B74661FC7562800BE0567 /* GuardianApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuardianApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B74691FC7562800BE0567 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F71B746B1FC7562800BE0567 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,9 +43,17 @@
 		F71B747C1FC7790000BE0567 /* GuardianMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianMainButton.swift; sourceTree = "<group>"; };
 		F71B747F1FC77C3000BE0567 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		F71B74841FC8CC1900BE0567 /* GuardianCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianCollectionViewCell.swift; sourceTree = "<group>"; };
-		F71B74861FC8D2E100BE0567 /* StreamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
 		F71B74891FC9E15900BE0567 /* WarningView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WarningView.xib; sourceTree = "<group>"; };
 		F71B748B1FC9E34200BE0567 /* WarningSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningSectionView.swift; sourceTree = "<group>"; };
+		F71B748D1FCC9BF700BE0567 /* StatusSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusSectionView.xib; sourceTree = "<group>"; };
+		F71B748F1FCC9EF200BE0567 /* StatusSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusSectionView.swift; sourceTree = "<group>"; };
+		F71B74911FCC9F7400BE0567 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		F71B74931FCCA68700BE0567 /* SectionViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionViewProtocol.swift; sourceTree = "<group>"; };
+		F71B74971FCCB26500BE0567 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F771E3E31FF59F410034D763 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F771E3E51FF706410034D763 /* MovementDetectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovementDetectionView.xib; sourceTree = "<group>"; };
+		F771E3E71FF7076D0034D763 /* MovementDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDetectionView.swift; sourceTree = "<group>"; };
+		F771E3E91FF788710034D763 /* MovementDetectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDetectionCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,17 +61,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D88FD46AF0E7AB925C9332D /* Pods_GuardianApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D34B02E9F33EF74F6FF8A6A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				25D9CBD88B2916521C8853F3 /* Pods-GuardianApp.debug.xcconfig */,
+				3043F72FAC596ED918B8AE9F /* Pods-GuardianApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E6F1F409F87F744C7F51A84A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6DF5F32CDE4DDE00F1B3A8D1 /* Pods_GuardianApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F71B745D1FC7562800BE0567 = {
 			isa = PBXGroup;
 			children = (
 				F71B74681FC7562800BE0567 /* GuardianApp */,
 				F71B74671FC7562800BE0567 /* Products */,
+				3D34B02E9F33EF74F6FF8A6A /* Pods */,
+				E6F1F409F87F744C7F51A84A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,12 +111,14 @@
 				F71B747E1FC77C2000BE0567 /* BackgroundView */,
 				F71B747B1FC778E900BE0567 /* CustomButtons */,
 				F71B74691FC7562800BE0567 /* AppDelegate.swift */,
+				F71B74971FCCB26500BE0567 /* LoginViewController.swift */,
 				F71B746B1FC7562800BE0567 /* ViewController.swift */,
 				F71B746D1FC7562800BE0567 /* Main.storyboard */,
 				F71B74701FC7562800BE0567 /* Assets.xcassets */,
 				F71B74721FC7562800BE0567 /* LaunchScreen.storyboard */,
 				F71B74751FC7562800BE0567 /* Info.plist */,
-				F71B74861FC8D2E100BE0567 /* StreamManager.swift */,
+				F71B74911FCC9F7400BE0567 /* Helper.swift */,
+				F771E3E31FF59F410034D763 /* Extensions.swift */,
 			);
 			path = GuardianApp;
 			sourceTree = "<group>";
@@ -101,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				F71B74841FC8CC1900BE0567 /* GuardianCollectionViewCell.swift */,
+				F771E3E91FF788710034D763 /* MovementDetectionCollectionViewCell.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -110,6 +153,11 @@
 			children = (
 				F71B74891FC9E15900BE0567 /* WarningView.xib */,
 				F71B748B1FC9E34200BE0567 /* WarningSectionView.swift */,
+				F71B748D1FCC9BF700BE0567 /* StatusSectionView.xib */,
+				F71B748F1FCC9EF200BE0567 /* StatusSectionView.swift */,
+				F71B74931FCCA68700BE0567 /* SectionViewProtocol.swift */,
+				F771E3E51FF706410034D763 /* MovementDetectionView.xib */,
+				F771E3E71FF7076D0034D763 /* MovementDetectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -121,9 +169,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F71B74781FC7562800BE0567 /* Build configuration list for PBXNativeTarget "GuardianApp" */;
 			buildPhases = (
+				98C2F2DAD6E18BDB63C9428B /* [CP] Check Pods Manifest.lock */,
 				F71B74621FC7562800BE0567 /* Sources */,
 				F71B74631FC7562800BE0567 /* Frameworks */,
 				F71B74641FC7562800BE0567 /* Resources */,
+				DE8CB59BAEA6879AB21C212F /* [CP] Embed Pods Frameworks */,
+				4A8BF7EC2BFD6BD56A929D56 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -174,13 +225,81 @@
 			buildActionMask = 2147483647;
 			files = (
 				F71B74741FC7562800BE0567 /* LaunchScreen.storyboard in Resources */,
+				F771E3E61FF706410034D763 /* MovementDetectionView.xib in Resources */,
 				F71B748A1FC9E15900BE0567 /* WarningView.xib in Resources */,
 				F71B74711FC7562800BE0567 /* Assets.xcassets in Resources */,
+				F71B748E1FCC9BF700BE0567 /* StatusSectionView.xib in Resources */,
 				F71B746F1FC7562800BE0567 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4A8BF7EC2BFD6BD56A929D56 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GuardianApp/Pods-GuardianApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98C2F2DAD6E18BDB63C9428B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GuardianApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE8CB59BAEA6879AB21C212F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GuardianApp/Pods-GuardianApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GuardianApp/Pods-GuardianApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F71B74621FC7562800BE0567 /* Sources */ = {
@@ -190,10 +309,16 @@
 				F71B747D1FC7790000BE0567 /* GuardianMainButton.swift in Sources */,
 				F71B746C1FC7562800BE0567 /* ViewController.swift in Sources */,
 				F71B74851FC8CC1900BE0567 /* GuardianCollectionViewCell.swift in Sources */,
-				F71B74871FC8D2E100BE0567 /* StreamManager.swift in Sources */,
+				F71B74941FCCA68700BE0567 /* SectionViewProtocol.swift in Sources */,
 				F71B74801FC77C3000BE0567 /* BackgroundView.swift in Sources */,
+				F71B74921FCC9F7400BE0567 /* Helper.swift in Sources */,
+				F771E3E41FF59F410034D763 /* Extensions.swift in Sources */,
+				F771E3E81FF7076D0034D763 /* MovementDetectionView.swift in Sources */,
 				F71B748C1FC9E34200BE0567 /* WarningSectionView.swift in Sources */,
+				F771E3EA1FF788710034D763 /* MovementDetectionCollectionViewCell.swift in Sources */,
+				F71B74901FCC9EF200BE0567 /* StatusSectionView.swift in Sources */,
 				F71B746A1FC7562800BE0567 /* AppDelegate.swift in Sources */,
+				F71B74981FCCB26500BE0567 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +453,7 @@
 		};
 		F71B74791FC7562800BE0567 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25D9CBD88B2916521C8853F3 /* Pods-GuardianApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -343,6 +469,7 @@
 		};
 		F71B747A1FC7562800BE0567 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3043F72FAC596ED918B8AE9F /* Pods-GuardianApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
