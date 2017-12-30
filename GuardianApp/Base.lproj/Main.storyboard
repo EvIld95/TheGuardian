@@ -305,6 +305,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="b8e-9E-9EP"/>
                     <connections>
+                        <outlet property="camerasLabel" destination="7mw-bK-pl1" id="Uq5-3c-ERS"/>
                         <outlet property="collectionView" destination="oS8-bC-iyW" id="B4X-ew-SG1"/>
                         <outlet property="contentView" destination="ePT-Di-z9C" id="rxp-t2-VJo"/>
                         <outlet property="placeLabel" destination="kHZ-px-6Bl" id="Rjz-ma-kK5"/>

@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="aG5-DK-xMn">
-                    <rect key="frame" x="40" y="40" width="414" height="177"/>
+                    <rect key="frame" x="0.0" y="40" width="494" height="177"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mi3-Ym-nYQ">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -51,9 +51,9 @@
                 </button>
             </subviews>
             <constraints>
-                <constraint firstItem="aG5-DK-xMn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="16W-g3-9zb"/>
+                <constraint firstItem="aG5-DK-xMn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="16W-g3-9zb"/>
                 <constraint firstItem="b7h-Uu-d4J" firstAttribute="top" secondItem="aG5-DK-xMn" secondAttribute="bottom" constant="10" id="4a1-sA-wzh"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aG5-DK-xMn" secondAttribute="trailing" constant="40" id="4oi-Tl-5Ds"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="aG5-DK-xMn" secondAttribute="trailing" id="4oi-Tl-5Ds"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="b7h-Uu-d4J" secondAttribute="bottom" constant="5" id="56f-By-eYR"/>
                 <constraint firstItem="b7h-Uu-d4J" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="QbM-5N-RGF"/>
                 <constraint firstItem="z69-oV-EhJ" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="ToS-mU-Saf"/>

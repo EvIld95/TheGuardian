@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class MovementDetectionCollectionViewCell: UICollectionViewCell {
     var label: UILabel = {
-        let lab = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        let lab = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
         lab.textAlignment = .center
         lab.translatesAutoresizingMaskIntoConstraints = false
         return lab

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, SectionViewDisplayer {
+class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, SectionViewDisplayer, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var label: UILabel!
@@ -66,6 +66,11 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
         lastSelectedIndexPath = indexPath
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width / 5
+        let height = collectionView.frame.height - 10
+        return CGSize(width: width, height: height)
+    }
     
     @IBAction func buttonTapped(button: UIButton!) {
         

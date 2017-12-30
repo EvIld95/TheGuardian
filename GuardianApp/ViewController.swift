@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var placeLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var camerasLabel: UILabel!
+    
     
     var lastTouchedButton: UIButton?
     var lastVisitedPlace: String!
@@ -48,6 +50,8 @@ class ViewController: UIViewController {
         collectionView.layoutIfNeeded()
         collectionView.reloadItems(at: [lastSelectedIndexPath!])
         
+        addLine()
+        
         let videoURL = URL(string: "http://52.236.165.15:80/hls/camera.m3u8")
         let player = AVPlayer(url: videoURL!)
         let playerLayer = AVPlayerLayer(player: player)
@@ -64,6 +68,17 @@ class ViewController: UIViewController {
         firstLayoutSubview = false
     }
     
+    func addLine() {
+        let lineView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 1))
+        lineView.backgroundColor = .yellow
+        camerasLabel.addSubview(lineView)
+        
+        lineView.bottomAnchor.constraint(equalTo: camerasLabel.topAnchor).isActive = true
+        lineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        lineView.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
+        lineView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+    }
+    
     func setupCustomView(sv: ViewsName) {
         contentView.subviews.forEach { (subview) in
             subview.removeFromSuperview()
@@ -77,6 +92,7 @@ class ViewController: UIViewController {
         customView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height)
         
         contentView.addSubview(customView)
+        
         let displayerSection = customView as! SectionViewDisplayer
         displayerSection.adjustSectionView(withSectionName: lastVisitedPlace)
     }
