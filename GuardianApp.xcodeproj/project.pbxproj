@@ -27,6 +27,9 @@
 		F771E3E61FF706410034D763 /* MovementDetectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F771E3E51FF706410034D763 /* MovementDetectionView.xib */; };
 		F771E3E81FF7076D0034D763 /* MovementDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3E71FF7076D0034D763 /* MovementDetectionView.swift */; };
 		F771E3EA1FF788710034D763 /* MovementDetectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3E91FF788710034D763 /* MovementDetectionCollectionViewCell.swift */; };
+		F771E3ED1FF7E6840034D763 /* GuardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3EC1FF7E6840034D763 /* GuardService.swift */; };
+		F771E3F01FF7EB770034D763 /* CameraResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3EF1FF7EB770034D763 /* CameraResponseModel.swift */; };
+		F771E3F21FF7ECB20034D763 /* GuardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3F11FF7ECB20034D763 /* GuardManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		F771E3E51FF706410034D763 /* MovementDetectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovementDetectionView.xib; sourceTree = "<group>"; };
 		F771E3E71FF7076D0034D763 /* MovementDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDetectionView.swift; sourceTree = "<group>"; };
 		F771E3E91FF788710034D763 /* MovementDetectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDetectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		F771E3EC1FF7E6840034D763 /* GuardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardService.swift; sourceTree = "<group>"; };
+		F771E3EF1FF7EB770034D763 /* CameraResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraResponseModel.swift; sourceTree = "<group>"; };
+		F771E3F11FF7ECB20034D763 /* GuardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,7 @@
 		F71B74681FC7562800BE0567 /* GuardianApp */ = {
 			isa = PBXGroup;
 			children = (
+				F771E3EB1FF7E64A0034D763 /* GuardManager */,
 				F71B74881FC9E13F00BE0567 /* Views */,
 				F71B74831FC8CC0300BE0567 /* CollectionView */,
 				F71B747E1FC77C2000BE0567 /* BackgroundView */,
@@ -160,6 +167,24 @@
 				F771E3E71FF7076D0034D763 /* MovementDetectionView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		F771E3EB1FF7E64A0034D763 /* GuardManager */ = {
+			isa = PBXGroup;
+			children = (
+				F771E3EE1FF7EB5D0034D763 /* Models */,
+				F771E3EC1FF7E6840034D763 /* GuardService.swift */,
+				F771E3F11FF7ECB20034D763 /* GuardManager.swift */,
+			);
+			path = GuardManager;
+			sourceTree = "<group>";
+		};
+		F771E3EE1FF7EB5D0034D763 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F771E3EF1FF7EB770034D763 /* CameraResponseModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,9 +305,11 @@
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-SwiftyJSONMapper/Moya_SwiftyJSONMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -290,9 +317,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_SwiftyJSONMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -315,8 +344,11 @@
 				F771E3E41FF59F410034D763 /* Extensions.swift in Sources */,
 				F771E3E81FF7076D0034D763 /* MovementDetectionView.swift in Sources */,
 				F71B748C1FC9E34200BE0567 /* WarningSectionView.swift in Sources */,
+				F771E3ED1FF7E6840034D763 /* GuardService.swift in Sources */,
 				F771E3EA1FF788710034D763 /* MovementDetectionCollectionViewCell.swift in Sources */,
+				F771E3F21FF7ECB20034D763 /* GuardManager.swift in Sources */,
 				F71B74901FCC9EF200BE0567 /* StatusSectionView.swift in Sources */,
+				F771E3F01FF7EB770034D763 /* CameraResponseModel.swift in Sources */,
 				F71B746A1FC7562800BE0567 /* AppDelegate.swift in Sources */,
 				F71B74981FCCB26500BE0567 /* LoginViewController.swift in Sources */,
 			);

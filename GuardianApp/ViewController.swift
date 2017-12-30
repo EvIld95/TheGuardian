@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
+import Moya
 
 class ViewController: UIViewController {
     
@@ -28,6 +29,17 @@ class ViewController: UIViewController {
     var guardianPlaces = ["Salon", "Hall", "Garage", "Bedroom", "Kitchen", "Outside", "Child Room", "Dining Room", "Tarrace"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        GuardManager.sharedInstance.fetchCameraAddress { (response) in
+            guard let resp = response as? CameraResponseModel else { return }
+            let videoURL = URL(string: resp.cameraAddress!)
+            let player = AVPlayer(url: videoURL!)
+            let playerLayer = AVPlayerLayer(player: player)
+            playerLayer.frame = self.playerView.bounds
+            self.playerView.layer.addSublayer(playerLayer)
+            player.play()
+        }
+        
         lastVisitedPlace = guardianPlaces.first!
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1 ) {
@@ -52,12 +64,6 @@ class ViewController: UIViewController {
         
         addLine()
         
-        let videoURL = URL(string: "http://52.236.165.15:80/hls/camera.m3u8")
-        let player = AVPlayer(url: videoURL!)
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = self.playerView.bounds
-        self.playerView.layer.addSublayer(playerLayer)
-        player.play()
     }
     
     override func viewDidLayoutSubviews() {
