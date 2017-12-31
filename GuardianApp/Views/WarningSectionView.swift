@@ -18,6 +18,10 @@ class WarningSectionView: UIView, SectionViewDisplayer {
     }
     
     func adjustSectionView(withSectionName section: String!) {
+        self.previewButton.layer.cornerRadius = 6
+        self.previewButton.layer.borderColor = UIColor.black.cgColor
+        self.previewButton.layer.borderWidth = 3
+        self.previewButton.clipsToBounds = true
         self.informationLabel.text = "Last danger in \(section!): \(Date().description)"
     }
 }

@@ -236,7 +236,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height - 20
-        let width = height / 1.2
+        let width = height / 1.1
         return CGSize(width: width, height: height)
     }
     

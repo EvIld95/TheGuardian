@@ -10,6 +10,7 @@ import UIKit
 
 class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, SectionViewDisplayer, UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var label: UILabel!
     
@@ -18,6 +19,10 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.button.layer.cornerRadius = 6
+        self.button.layer.borderColor = UIColor.black.cgColor
+        self.button.layer.borderWidth = 3
+        self.button.clipsToBounds = true
         self.collectionView.backgroundColor = .clear
         self.collectionView.register(MovementDetectionCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         self.collectionView.delegate = self
