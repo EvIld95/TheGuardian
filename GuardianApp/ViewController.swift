@@ -61,11 +61,10 @@ class ViewController: UIViewController {
         collectionView.backgroundColor = nil
         collectionView.allowsMultipleSelection = false
         collectionView.allowsSelection = true
-        collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
-        lastSelectedIndexPath =  IndexPath(item: 0, section: 0)
+        
         collectionView.setNeedsLayout()
         collectionView.layoutIfNeeded()
-        collectionView.reloadItems(at: [lastSelectedIndexPath!])
+        //collectionView.reloadItems(at: [lastSelectedIndexPath!])
         
         //addLine()
         
@@ -75,6 +74,8 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         if(firstLayoutSubview) {
             self.collectionView.reloadData()
+            collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
+            lastSelectedIndexPath =  IndexPath(item: 0, section: 0)
         }
         firstLayoutSubview = false
     }
@@ -202,8 +203,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         cell.label.text = guardianPlaces[indexPath.row]
         
         if(cell.isSelected) {
+            print("Selected: \(indexPath.item)")
             cell.backgroundColor = cell.selectionColor
+            
+         
         } else {
+            print("Not Selected: \(indexPath.item)")
             cell.backgroundColor = cell.defaultColor
         }
         
