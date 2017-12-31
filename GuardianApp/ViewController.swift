@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     var lastSelectedIndexPath: IndexPath?
     
     var guardianPlaces = ["Salon", "Hall", "Garage", "Bedroom", "Kitchen", "Outside", "Child Room", "Dining Room", "Tarrace"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -147,46 +148,43 @@ class ViewController: UIViewController {
     @IBAction func tempButtonTouched(button: UIButton!) {
         guard lastTouchedButton != button else { return }
         
-        
-        buttonSelectedSetup(button: button)
-        resetLastTouchedButton()
-        lastTouchedButton = button
+        setupCustomView(sv: .SensorSectionView)
+        checkButton(button: button)
     }
     
     @IBAction func movementButtonTouched(button: UIButton!) {
         guard lastTouchedButton != button else { return }
         
         setupCustomView(sv: .MovementDetectionView)
-        buttonSelectedSetup(button: button)
-        resetLastTouchedButton()
-        lastTouchedButton = button
+        checkButton(button: button)
     }
     
     @IBAction func warningButtonTouched(button: UIButton!) {
         guard lastTouchedButton != button else { return }
         
         setupCustomView(sv: .WarningView)
-        buttonSelectedSetup(button: button)
-        resetLastTouchedButton()
-        lastTouchedButton = button
+        checkButton(button: button)
     }
     
-    @IBAction func doorButtonTouched(button: UIButton!) {
+    @IBAction func liveStreamButtonTouched(button: UIButton!) {
         guard lastTouchedButton != button else { return }
-        buttonSelectedSetup(button: button)
-        resetLastTouchedButton()
-        lastTouchedButton = button
+        
+        setupCustomView(sv: .LiveStreamSectionView)
+        checkButton(button: button)
     }
     
     @IBAction func settingsButtonTouched(button: UIButton!) {
         guard lastTouchedButton != button else { return }
         
         setupCustomView(sv: .StatusSectionView)
+        checkButton(button: button)
+    }
+    
+    private func checkButton(button: UIButton!) {
         buttonSelectedSetup(button: button)
         resetLastTouchedButton()
         lastTouchedButton = button
     }
-
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

@@ -183,9 +183,9 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7H-5E-gbD" customClass="GuardianSelectionButton" customModule="GuardianApp" customModuleProvider="target">
                                                 <rect key="frame" x="227" y="10" width="59" height="59"/>
-                                                <state key="normal" image="door"/>
+                                                <state key="normal" image="live"/>
                                                 <connections>
-                                                    <action selector="doorButtonTouchedWithButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hvy-Db-wxJ"/>
+                                                    <action selector="liveStreamButtonTouchedWithButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eD5-Zy-Uit"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keL-LG-Lme" customClass="GuardianSelectionButton" customModule="GuardianApp" customModuleProvider="target">
@@ -338,8 +338,8 @@
     </scenes>
     <resources>
         <image name="camera" width="200" height="200"/>
-        <image name="door" width="200" height="200"/>
         <image name="guardLogo" width="614" height="617"/>
+        <image name="live" width="800" height="800"/>
         <image name="movementDetection" width="280" height="280"/>
         <image name="settings" width="128" height="128"/>
         <image name="temp" width="200" height="200"/>

@@ -12,5 +12,7 @@ enum ViewsName: String {
     case WarningView = "WarningView"
     case StatusSectionView = "StatusSectionView"
     case MovementDetectionView = "MovementDetectionView"
+    case LiveStreamSectionView = "LiveStreamSectionView"
+    case SensorSectionView = "SensorSectionView"
 }
 

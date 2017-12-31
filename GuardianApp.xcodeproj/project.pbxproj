@@ -30,6 +30,10 @@
 		F771E3ED1FF7E6840034D763 /* GuardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3EC1FF7E6840034D763 /* GuardService.swift */; };
 		F771E3F01FF7EB770034D763 /* CameraResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3EF1FF7EB770034D763 /* CameraResponseModel.swift */; };
 		F771E3F21FF7ECB20034D763 /* GuardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3F11FF7ECB20034D763 /* GuardManager.swift */; };
+		F771E3F41FF8F0900034D763 /* LiveStreamSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F771E3F31FF8F0900034D763 /* LiveStreamSectionView.xib */; };
+		F771E3F61FF8F19C0034D763 /* LiveStreamSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3F51FF8F19C0034D763 /* LiveStreamSectionView.swift */; };
+		F771E3F81FF8F4470034D763 /* SensorSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F771E3F71FF8F4470034D763 /* SensorSectionView.xib */; };
+		F771E3FA1FF8F5890034D763 /* SensorSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3F91FF8F5890034D763 /* SensorSectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +64,10 @@
 		F771E3EC1FF7E6840034D763 /* GuardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardService.swift; sourceTree = "<group>"; };
 		F771E3EF1FF7EB770034D763 /* CameraResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraResponseModel.swift; sourceTree = "<group>"; };
 		F771E3F11FF7ECB20034D763 /* GuardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardManager.swift; sourceTree = "<group>"; };
+		F771E3F31FF8F0900034D763 /* LiveStreamSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveStreamSectionView.xib; sourceTree = "<group>"; };
+		F771E3F51FF8F19C0034D763 /* LiveStreamSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamSectionView.swift; sourceTree = "<group>"; };
+		F771E3F71FF8F4470034D763 /* SensorSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorSectionView.xib; sourceTree = "<group>"; };
+		F771E3F91FF8F5890034D763 /* SensorSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +173,10 @@
 				F71B74931FCCA68700BE0567 /* SectionViewProtocol.swift */,
 				F771E3E51FF706410034D763 /* MovementDetectionView.xib */,
 				F771E3E71FF7076D0034D763 /* MovementDetectionView.swift */,
+				F771E3F31FF8F0900034D763 /* LiveStreamSectionView.xib */,
+				F771E3F51FF8F19C0034D763 /* LiveStreamSectionView.swift */,
+				F771E3F71FF8F4470034D763 /* SensorSectionView.xib */,
+				F771E3F91FF8F5890034D763 /* SensorSectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -249,8 +261,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F771E3F81FF8F4470034D763 /* SensorSectionView.xib in Resources */,
 				F71B74741FC7562800BE0567 /* LaunchScreen.storyboard in Resources */,
 				F771E3E61FF706410034D763 /* MovementDetectionView.xib in Resources */,
+				F771E3F41FF8F0900034D763 /* LiveStreamSectionView.xib in Resources */,
 				F71B748A1FC9E15900BE0567 /* WarningView.xib in Resources */,
 				F71B74711FC7562800BE0567 /* Assets.xcassets in Resources */,
 				F71B748E1FCC9BF700BE0567 /* StatusSectionView.xib in Resources */,
@@ -347,8 +361,10 @@
 				F771E3ED1FF7E6840034D763 /* GuardService.swift in Sources */,
 				F771E3EA1FF788710034D763 /* MovementDetectionCollectionViewCell.swift in Sources */,
 				F771E3F21FF7ECB20034D763 /* GuardManager.swift in Sources */,
+				F771E3FA1FF8F5890034D763 /* SensorSectionView.swift in Sources */,
 				F71B74901FCC9EF200BE0567 /* StatusSectionView.swift in Sources */,
 				F771E3F01FF7EB770034D763 /* CameraResponseModel.swift in Sources */,
+				F771E3F61FF8F19C0034D763 /* LiveStreamSectionView.swift in Sources */,
 				F71B746A1FC7562800BE0567 /* AppDelegate.swift in Sources */,
 				F71B74981FCCB26500BE0567 /* LoginViewController.swift in Sources */,
 			);
