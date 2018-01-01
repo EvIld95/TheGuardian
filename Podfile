@@ -12,4 +12,6 @@ target 'GuardianApp' do
   pod 'RxCocoa',    '~> 4.0'
   pod 'IHKeyboardAvoiding'
   pod 'Moya-SwiftyJSONMapper'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 end

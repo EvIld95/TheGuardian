@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>299985780377-qb5a8rn041un8akpngt1mj7v6ljuegql.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.299985780377-qb5a8rn041un8akpngt1mj7v6ljuegql</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCKM8AJwR2y6WgIPr1X3SaO85dN90Ly9oY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>299985780377</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.pawelszudrowicz.guardapp</string>
+	<key>PROJECT_ID</key>
+	<string>guardapp-ac65a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>guardapp-ac65a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:299985780377:ios:d160fd6e6371f239</string>
+	<key>DATABASE_URL</key>
+	<string>https://guardapp-ac65a.firebaseio.com</string>
+</dict>
+</plist>

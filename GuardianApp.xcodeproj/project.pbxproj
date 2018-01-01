@@ -34,6 +34,7 @@
 		F771E3F61FF8F19C0034D763 /* LiveStreamSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3F51FF8F19C0034D763 /* LiveStreamSectionView.swift */; };
 		F771E3F81FF8F4470034D763 /* SensorSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F771E3F71FF8F4470034D763 /* SensorSectionView.xib */; };
 		F771E3FA1FF8F5890034D763 /* SensorSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3F91FF8F5890034D763 /* SensorSectionView.swift */; };
+		F771E3FC1FFAE5BB0034D763 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F771E3FB1FFAE5BB0034D763 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,8 @@
 		F771E3F51FF8F19C0034D763 /* LiveStreamSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamSectionView.swift; sourceTree = "<group>"; };
 		F771E3F71FF8F4470034D763 /* SensorSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorSectionView.xib; sourceTree = "<group>"; };
 		F771E3F91FF8F5890034D763 /* SensorSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSectionView.swift; sourceTree = "<group>"; };
+		F771E3FB1FFAE5BB0034D763 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F771E3FD1FFAE6FE0034D763 /* GuardianApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuardianApp.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 		F71B74681FC7562800BE0567 /* GuardianApp */ = {
 			isa = PBXGroup;
 			children = (
+				F771E3FD1FFAE6FE0034D763 /* GuardianApp.entitlements */,
+				F771E3FB1FFAE5BB0034D763 /* GoogleService-Info.plist */,
 				F771E3EB1FF7E64A0034D763 /* GuardManager */,
 				F71B74881FC9E13F00BE0567 /* Views */,
 				F71B74831FC8CC0300BE0567 /* CollectionView */,
@@ -235,6 +240,11 @@
 					F71B74651FC7562800BE0567 = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -266,6 +276,7 @@
 				F771E3E61FF706410034D763 /* MovementDetectionView.xib in Resources */,
 				F771E3F41FF8F0900034D763 /* LiveStreamSectionView.xib in Resources */,
 				F71B748A1FC9E15900BE0567 /* WarningView.xib in Resources */,
+				F771E3FC1FFAE5BB0034D763 /* GoogleService-Info.plist in Resources */,
 				F71B74711FC7562800BE0567 /* Assets.xcassets in Resources */,
 				F71B748E1FCC9BF700BE0567 /* StatusSectionView.xib in Resources */,
 				F71B746F1FC7562800BE0567 /* Main.storyboard in Resources */,
@@ -316,26 +327,32 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-GuardianApp/Pods-GuardianApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya-SwiftyJSONMapper/Moya_SwiftyJSONMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_SwiftyJSONMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -504,11 +521,12 @@
 			baseConfigurationReference = 25D9CBD88B2916521C8853F3 /* Pods-GuardianApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GuardianApp/GuardianApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 276JFTHA68;
 				INFOPLIST_FILE = GuardianApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = guardianapp.pawelszudrowicz.com.GuardianApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawelszudrowicz.guardapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -520,11 +538,12 @@
 			baseConfigurationReference = 3043F72FAC596ED918B8AE9F /* Pods-GuardianApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GuardianApp/GuardianApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 276JFTHA68;
 				INFOPLIST_FILE = GuardianApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = guardianapp.pawelszudrowicz.com.GuardianApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawelszudrowicz.guardapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
