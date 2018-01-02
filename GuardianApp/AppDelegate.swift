@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         FBHandler()
     }
-
     
     @objc func refreshToken(notification: NSNotification) {
         let refreshToken = InstanceID.instanceID().token()!
@@ -55,6 +54,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging().shouldEstablishDirectChannel = true
     }
 
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let value = userInfo["aps"]
+        if let dict = value as? Dictionary<String,String> {
+            print("Remote notification \(dict["alert"]!)")
+        }
+        
+        
+    }
 
 }
 
