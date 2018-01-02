@@ -9,6 +9,10 @@
 import UIKit
 import MBProgressHUD
 import IHKeyboardAvoiding
+import FirebaseAuth
+import Firebase
+import RxSwift
+import RxCocoa
 
 class LoginViewController: UIViewController {
     
@@ -16,15 +20,26 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var dontHaveAccountButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var emailAddressTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     
     private let backImageView: UIImageView! = UIImageView(image: UIImage(named: "guardLogo"))
     private let frontImageView: UIImageView! = UIImageView(image: UIImage(named: "guardLogo"))
     private var showingBack = false
+    let disposeBag = DisposeBag()
     
     private var loginPage = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        self.emailAddressTextField.text = "pablo.szudrowicz@gmail.com"
+        self.passwordTextField.text = "qwerty"
+        
+        setupRx()
+        
         
         KeyboardAvoiding.avoidingView = self.stackView
         let gesture = UITapGestureRecognizer(target: self, action: #selector(flip))
@@ -45,6 +60,25 @@ class LoginViewController: UIViewController {
         backImageView.translatesAutoresizingMaskIntoConstraints = true
     }
     
+    func setupRx() {
+        let emailRx = emailAddressTextField.rx.text.orEmpty.throttle(0.5,scheduler:MainScheduler.instance).map { (inputText) -> Bool in
+            return ( (inputText.count > 0) && (inputText.contains("@")) )
+        }
+        let passwordRx = passwordTextField.rx.text.orEmpty.throttle(0.5, scheduler: MainScheduler.instance).map { (inputText) ->Bool in
+            return (inputText.count) > 0
+        }
+        
+        Observable.combineLatest(emailRx, passwordRx).subscribe(onNext: { (email, password) in
+            if(email == true && password == true) {
+                self.loginButton.isEnabled = true
+                self.loginButton.alpha = 1.0
+            } else {
+                self.loginButton.isEnabled = false
+                self.loginButton.alpha = 0.5
+            }
+        }).disposed(by: disposeBag)
+    }
+    
     @objc func flip() {
         let toView = showingBack ? frontImageView : backImageView
         let fromView = showingBack ? backImageView : frontImageView
@@ -56,6 +90,30 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonTapped(sender: UIButton!) {
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        if loginPage {
+            Auth.auth().signIn(withEmail: emailAddressTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                self.performSegue(withIdentifier: "loggedInSuccess", sender: nil)
+            })
+            
+        } else {
+            Auth.auth().createUser(withEmail: emailAddressTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                self.performSegue(withIdentifier: "loggedInSuccess", sender: nil)
+            })
+        }
+        
         hideKeyboard()
     }
 

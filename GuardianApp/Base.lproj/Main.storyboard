@@ -69,7 +69,6 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="loginButtonTappedWithSender:" destination="kxg-HV-zd3" eventType="touchUpInside" id="SwM-g0-abc"/>
-                                                            <segue destination="AzU-q9-4ff" kind="show" id="8e4-fY-2hk"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -116,9 +115,12 @@
                     </view>
                     <connections>
                         <outlet property="dontHaveAccountButton" destination="bbe-x7-3nI" id="3Qh-ET-gVE"/>
+                        <outlet property="emailAddressTextField" destination="3z6-Cr-WKy" id="x2z-rS-fex"/>
                         <outlet property="loginButton" destination="Rn5-pa-Lqo" id="PoP-3j-j6I"/>
                         <outlet property="logo" destination="D6f-cn-Ol2" id="A60-0C-dyp"/>
+                        <outlet property="passwordTextField" destination="0uf-by-RlF" id="qCb-rw-Zl7"/>
                         <outlet property="stackView" destination="Wpj-MZ-cgH" id="vXH-s4-1tL"/>
+                        <segue destination="AzU-q9-4ff" kind="show" identifier="loggedInSuccess" id="sJ3-XG-38r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKj-72-8ze" userLabel="First Responder" sceneMemberID="firstResponder"/>
