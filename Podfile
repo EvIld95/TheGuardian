@@ -14,4 +14,5 @@ target 'GuardianApp' do
   pod 'Moya-SwiftyJSONMapper'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Auth'
 end
