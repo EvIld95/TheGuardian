@@ -97,7 +97,11 @@ class LoginViewController: UIViewController {
             Auth.auth().signIn(withEmail: emailAddressTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
                 MBProgressHUD.hide(for: self.view, animated: true)
                 guard error == nil else {
-                    print(error!.localizedDescription)
+                    let alertController = UIAlertController(title: "Error!", message: error!.localizedDescription, preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
                     return
                 }
                 self.performSegue(withIdentifier: "loggedInSuccess", sender: nil)
@@ -107,7 +111,10 @@ class LoginViewController: UIViewController {
             Auth.auth().createUser(withEmail: emailAddressTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
                 MBProgressHUD.hide(for: self.view, animated: true)
                 guard error == nil else {
-                    print(error!.localizedDescription)
+                    let alertController = UIAlertController(title: "Error!", message: error!.localizedDescription, preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    
+                    self.present(alertController, animated: true, completion: nil)
                     return
                 }
                 self.performSegue(withIdentifier: "loggedInSuccess", sender: nil)
