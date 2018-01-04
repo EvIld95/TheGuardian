@@ -10,6 +10,8 @@ import UIKit
 import AVKit
 import AVFoundation
 import Moya
+import RxSwift
+
 
 class ViewController: UIViewController {
     
@@ -25,11 +27,21 @@ class ViewController: UIViewController {
     var firstLayoutSubview = true
     @IBOutlet weak var warningButton: UIButton!
     var lastSelectedIndexPath: IndexPath?
+    let disposeBag = DisposeBag()
     
     var guardianPlaces = ["Salon", "Hall", "Garage", "Bedroom", "Kitchen", "Outside", "Child Room", "Dining Room", "Tarrace"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.receivedNotification.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { (value) in
+            let alertController = UIAlertController(title: "You are fucked!", message: "\(value)", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }).disposed(by: disposeBag)
         
         GuardManager.sharedInstance.fetchCameraAddress { (response) in
             guard let resp = response as? CameraResponseModel else { return }

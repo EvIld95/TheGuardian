@@ -11,13 +11,15 @@ import Firebase
 import FirebaseMessaging
 import FirebaseInstanceID
 import UserNotifications
+import RxSwift
+
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var receivedNotification = Variable<String>("")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -42,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func applicationDidBecomeActive(_ application: UIApplication) {
         FBHandler()
+        
     }
     
     @objc func refreshToken(notification: NSNotification) {
@@ -58,8 +61,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         let value = userInfo["aps"]
         if let dict = value as? Dictionary<String,String> {
-            print("Remote notification \(dict["alert"]!)")
+            //print("Remote notification \(dict["alert"]!)")
+            receivedNotification.value = dict["alert"]!
         }
+        
+        
         
         
     }
