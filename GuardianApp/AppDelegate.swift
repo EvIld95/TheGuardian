@@ -44,13 +44,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func applicationDidBecomeActive(_ application: UIApplication) {
         FBHandler()
-        
     }
     
     @objc func refreshToken(notification: NSNotification) {
         let refreshToken = InstanceID.instanceID().token()!
         print("*** \(refreshToken) ***")
-        
+        let refreshToken2 = InstanceID.instanceID().token()!
+        print("*** \(refreshToken2) ***")
         FBHandler()
     }
     
@@ -64,10 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             //print("Remote notification \(dict["alert"]!)")
             receivedNotification.value = dict["alert"]!
         }
-        
-        
-        
-        
     }
 
 }

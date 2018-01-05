@@ -14,11 +14,36 @@ class SensorSectionView: UIView, SectionViewDisplayer {
     @IBOutlet weak var sensor2Label: UILabel!
     @IBOutlet weak var sensor3Label: UILabel!
     
+    
+    @IBOutlet weak var sensor1NameLabel: UILabel!
+    @IBOutlet weak var sensor2NameLabel: UILabel!
+    @IBOutlet weak var sensor3NameLabel: UILabel!
+    
+    var place: String!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    override func removeFromSuperview() {
+        super.removeFromSuperview()
+        FirebaseManager.sharedInstance.stopListenForSensorUpdates(raspSerial: place)
+    }
+    
     func adjustSectionView(withSectionName section: String!) {
-        self.titleLabel.text = "Sensors Status from \(section!)"
-        self.sensor1Label.text = "Value sensor1"
-        self.sensor2Label.text = "Value sensor2"
-        self.sensor3Label.text = "Value sensor3"
+        
+        self.titleLabel.text = "Sensors Status from \(section!) "
+        self.place = section!
+        FirebaseManager.sharedInstance.listenForSensorUpdates(raspSerial: section!) { sensors in
+            self.sensor1NameLabel.text = sensors[0].name
+            self.sensor2NameLabel.text = sensors[1].name
+            self.sensor3NameLabel.text = sensors[2].name
+            
+            self.sensor1Label.text = "\(sensors[0].value ?? 0.0)"
+            self.sensor2Label.text = "\(sensors[1].value ?? 0.0)"
+            self.sensor3Label.text = "\(sensors[2].value ?? 0.0)"
+            print(sensors)
+        }
     }
     
 }

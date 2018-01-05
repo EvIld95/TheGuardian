@@ -34,7 +34,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         appDelegate.receivedNotification.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { (value) in
@@ -43,6 +42,11 @@ class ViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
         }).disposed(by: disposeBag)
         
+        for place in guardianPlaces {
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "sensor1")
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "sensor2")
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "sensor3")
+        }
         GuardManager.sharedInstance.fetchCameraAddress { (response) in
             guard let resp = response as? CameraResponseModel else { return }
             print(resp.cameraAddress!)
@@ -215,12 +219,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         cell.label.text = guardianPlaces[indexPath.row]
         
         if(cell.isSelected) {
-            print("Selected: \(indexPath.item)")
             cell.backgroundColor = cell.selectionColor
-            
-         
         } else {
-            print("Not Selected: \(indexPath.item)")
             cell.backgroundColor = cell.defaultColor
         }
         

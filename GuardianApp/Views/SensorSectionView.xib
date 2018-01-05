@@ -93,8 +93,11 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="sensor1Label" destination="pl1-D5-7BF" id="Dcx-VR-wqz"/>
+                <outlet property="sensor1NameLabel" destination="M6v-Wi-R2t" id="bZD-ek-R5G"/>
                 <outlet property="sensor2Label" destination="8F5-Bs-Da9" id="ZOX-h1-mHl"/>
+                <outlet property="sensor2NameLabel" destination="gBw-4I-by9" id="LCS-k4-e9L"/>
                 <outlet property="sensor3Label" destination="dFl-If-MCt" id="V0O-SD-xs8"/>
+                <outlet property="sensor3NameLabel" destination="4Dc-Ka-RI9" id="zf6-WQ-NwC"/>
                 <outlet property="titleLabel" destination="Q4y-UC-18j" id="y1a-Qs-Xgx"/>
             </connections>
             <point key="canvasLocation" x="41" y="275"/>

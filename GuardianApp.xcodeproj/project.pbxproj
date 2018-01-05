@@ -35,6 +35,8 @@
 		F771E3F81FF8F4470034D763 /* SensorSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F771E3F71FF8F4470034D763 /* SensorSectionView.xib */; };
 		F771E3FA1FF8F5890034D763 /* SensorSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E3F91FF8F5890034D763 /* SensorSectionView.swift */; };
 		F771E3FC1FFAE5BB0034D763 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F771E3FB1FFAE5BB0034D763 /* GoogleService-Info.plist */; };
+		F771E4011FFEAAEA0034D763 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4001FFEAAEA0034D763 /* FirebaseManager.swift */; };
+		F771E4031FFF9E670034D763 /* SensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4021FFF9E670034D763 /* SensorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		F771E3F91FF8F5890034D763 /* SensorSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSectionView.swift; sourceTree = "<group>"; };
 		F771E3FB1FFAE5BB0034D763 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F771E3FD1FFAE6FE0034D763 /* GuardianApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuardianApp.entitlements; sourceTree = "<group>"; };
+		F771E4001FFEAAEA0034D763 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		F771E4021FFF9E670034D763 /* SensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 		F71B74681FC7562800BE0567 /* GuardianApp */ = {
 			isa = PBXGroup;
 			children = (
+				F771E3FF1FFEAAD70034D763 /* Firebase */,
 				F771E3FD1FFAE6FE0034D763 /* GuardianApp.entitlements */,
 				F771E3FB1FFAE5BB0034D763 /* GoogleService-Info.plist */,
 				F771E3EB1FF7E64A0034D763 /* GuardManager */,
@@ -202,6 +207,23 @@
 				F771E3EF1FF7EB770034D763 /* CameraResponseModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F771E3FE1FFEAA550034D763 /* FirebaseModels */ = {
+			isa = PBXGroup;
+			children = (
+				F771E4021FFF9E670034D763 /* SensorModel.swift */,
+			);
+			path = FirebaseModels;
+			sourceTree = "<group>";
+		};
+		F771E3FF1FFEAAD70034D763 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				F771E3FE1FFEAA550034D763 /* FirebaseModels */,
+				F771E4001FFEAAEA0034D763 /* FirebaseManager.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +360,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -354,6 +377,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,11 +401,13 @@
 				F771E3E41FF59F410034D763 /* Extensions.swift in Sources */,
 				F771E3E81FF7076D0034D763 /* MovementDetectionView.swift in Sources */,
 				F71B748C1FC9E34200BE0567 /* WarningSectionView.swift in Sources */,
+				F771E4011FFEAAEA0034D763 /* FirebaseManager.swift in Sources */,
 				F771E3ED1FF7E6840034D763 /* GuardService.swift in Sources */,
 				F771E3EA1FF788710034D763 /* MovementDetectionCollectionViewCell.swift in Sources */,
 				F771E3F21FF7ECB20034D763 /* GuardManager.swift in Sources */,
 				F771E3FA1FF8F5890034D763 /* SensorSectionView.swift in Sources */,
 				F71B74901FCC9EF200BE0567 /* StatusSectionView.swift in Sources */,
+				F771E4031FFF9E670034D763 /* SensorModel.swift in Sources */,
 				F771E3F01FF7EB770034D763 /* CameraResponseModel.swift in Sources */,
 				F771E3F61FF8F19C0034D763 /* LiveStreamSectionView.swift in Sources */,
 				F71B746A1FC7562800BE0567 /* AppDelegate.swift in Sources */,
