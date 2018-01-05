@@ -37,6 +37,7 @@
 		F771E3FC1FFAE5BB0034D763 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F771E3FB1FFAE5BB0034D763 /* GoogleService-Info.plist */; };
 		F771E4011FFEAAEA0034D763 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4001FFEAAEA0034D763 /* FirebaseManager.swift */; };
 		F771E4031FFF9E670034D763 /* SensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4021FFF9E670034D763 /* SensorModel.swift */; };
+		F771E4051FFFEF9A0034D763 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4041FFFEF9A0034D763 /* StreamManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		F771E3FD1FFAE6FE0034D763 /* GuardianApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuardianApp.entitlements; sourceTree = "<group>"; };
 		F771E4001FFEAAEA0034D763 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		F771E4021FFF9E670034D763 /* SensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorModel.swift; sourceTree = "<group>"; };
+		F771E4041FFFEF9A0034D763 /* StreamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				F71B74751FC7562800BE0567 /* Info.plist */,
 				F71B74911FCC9F7400BE0567 /* Helper.swift */,
 				F771E3E31FF59F410034D763 /* Extensions.swift */,
+				F771E4041FFFEF9A0034D763 /* StreamManager.swift */,
 			);
 			path = GuardianApp;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				F71B747D1FC7790000BE0567 /* GuardianMainButton.swift in Sources */,
 				F71B746C1FC7562800BE0567 /* ViewController.swift in Sources */,
 				F71B74851FC8CC1900BE0567 /* GuardianCollectionViewCell.swift in Sources */,
+				F771E4051FFFEF9A0034D763 /* StreamManager.swift in Sources */,
 				F71B74941FCCA68700BE0567 /* SectionViewProtocol.swift in Sources */,
 				F71B74801FC77C3000BE0567 /* BackgroundView.swift in Sources */,
 				F71B74921FCC9F7400BE0567 /* Helper.swift in Sources */,

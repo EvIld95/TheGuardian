@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var receivedNotification = Variable<String>("")
+    var inBackground = Variable<Bool>(false)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -41,7 +42,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         Messaging.messaging().shouldEstablishDirectChannel = false
+        inBackground.value = true
     }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        inBackground.value = false
+    }
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         FBHandler()
     }
