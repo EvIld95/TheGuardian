@@ -34,12 +34,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.emailAddressTextField.text = "pablo.szudrowicz@gmail.com"
         self.passwordTextField.text = "qwerty"
         
         setupRx()
-        
         
         KeyboardAvoiding.avoidingView = self.stackView
         let gesture = UITapGestureRecognizer(target: self, action: #selector(flip))
