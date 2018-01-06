@@ -24,63 +24,114 @@
                     <rect key="frame" x="0.0" y="10" width="390" height="204"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4y-UC-18j">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="51"/>
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="41"/>
                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mqo-IK-Eq9">
-                            <rect key="frame" x="0.0" y="51" width="390" height="51"/>
+                            <rect key="frame" x="0.0" y="41" width="390" height="40.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6v-Wi-R2t">
-                                    <rect key="frame" x="0.0" y="0.0" width="195" height="51"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="40.5"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pl1-D5-7BF">
-                                    <rect key="frame" x="195" y="0.0" width="195" height="51"/>
+                                    <rect key="frame" x="195" y="0.0" width="195" height="40.5"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="pl1-D5-7BF" firstAttribute="leading" secondItem="M6v-Wi-R2t" secondAttribute="trailing" id="2qt-sV-5en"/>
+                                <constraint firstItem="pl1-D5-7BF" firstAttribute="leading" secondItem="M6v-Wi-R2t" secondAttribute="trailing" id="lJV-kP-lHP"/>
+                                <constraint firstItem="M6v-Wi-R2t" firstAttribute="leading" secondItem="Mqo-IK-Eq9" secondAttribute="leading" id="mnG-bi-e1N"/>
+                                <constraint firstAttribute="trailing" secondItem="pl1-D5-7BF" secondAttribute="trailing" id="sBs-On-xV0"/>
+                            </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7mr-Iu-3WK">
-                            <rect key="frame" x="0.0" y="102" width="390" height="51"/>
+                            <rect key="frame" x="0.0" y="81.5" width="390" height="41"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBw-4I-by9">
-                                    <rect key="frame" x="0.0" y="0.0" width="195" height="51"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="41"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8F5-Bs-Da9">
-                                    <rect key="frame" x="195" y="0.0" width="195" height="51"/>
+                                    <rect key="frame" x="195" y="0.0" width="195" height="41"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="gBw-4I-by9" firstAttribute="leading" secondItem="7mr-Iu-3WK" secondAttribute="leading" id="4gL-ab-tp0"/>
+                                <constraint firstItem="8F5-Bs-Da9" firstAttribute="leading" secondItem="gBw-4I-by9" secondAttribute="trailing" id="WjI-Tn-XAJ"/>
+                                <constraint firstAttribute="trailing" secondItem="8F5-Bs-Da9" secondAttribute="trailing" id="omg-uI-g2F"/>
+                                <constraint firstItem="8F5-Bs-Da9" firstAttribute="leading" secondItem="gBw-4I-by9" secondAttribute="trailing" id="ynt-ic-HIV"/>
+                            </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="25A-5J-s6l">
-                            <rect key="frame" x="0.0" y="153" width="390" height="51"/>
+                            <rect key="frame" x="0.0" y="122.5" width="390" height="40.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor3" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dc-Ka-RI9">
-                                    <rect key="frame" x="0.0" y="0.0" width="195" height="51"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="40.5"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFl-If-MCt">
-                                    <rect key="frame" x="195" y="0.0" width="195" height="51"/>
+                                    <rect key="frame" x="195" y="0.0" width="195" height="40.5"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="dFl-If-MCt" firstAttribute="leading" secondItem="4Dc-Ka-RI9" secondAttribute="trailing" id="7zg-tY-74a"/>
+                                <constraint firstAttribute="trailing" secondItem="dFl-If-MCt" secondAttribute="trailing" id="95g-1w-Zey"/>
+                                <constraint firstItem="4Dc-Ka-RI9" firstAttribute="leading" secondItem="25A-5J-s6l" secondAttribute="leading" id="fsD-on-Bl5"/>
+                                <constraint firstItem="dFl-If-MCt" firstAttribute="leading" secondItem="4Dc-Ka-RI9" secondAttribute="trailing" id="hfc-Wf-WAN"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gvk-pH-tVe">
+                            <rect key="frame" x="0.0" y="163" width="390" height="41"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor4" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdl-Ny-k7S">
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="41"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSw-Sw-3Db">
+                                    <rect key="frame" x="195" y="0.0" width="195" height="41"/>
+                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="dSw-Sw-3Db" firstAttribute="leading" secondItem="pdl-Ny-k7S" secondAttribute="trailing" id="SYa-X2-7IY"/>
+                                <constraint firstItem="dSw-Sw-3Db" firstAttribute="leading" secondItem="pdl-Ny-k7S" secondAttribute="trailing" id="YP1-pT-xWA"/>
+                                <constraint firstAttribute="trailing" secondItem="dSw-Sw-3Db" secondAttribute="trailing" id="jLZ-so-dR2"/>
+                                <constraint firstItem="pdl-Ny-k7S" firstAttribute="leading" secondItem="Gvk-pH-tVe" secondAttribute="leading" id="pyr-rV-sDV"/>
+                            </constraints>
                         </stackView>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="25A-5J-s6l" secondAttribute="trailing" id="3tm-qf-XEJ"/>
+                        <constraint firstAttribute="trailing" secondItem="Mqo-IK-Eq9" secondAttribute="trailing" id="Dut-gp-Oc2"/>
+                        <constraint firstItem="7mr-Iu-3WK" firstAttribute="leading" secondItem="A8F-3A-cMo" secondAttribute="leading" id="U2B-rH-obv"/>
+                        <constraint firstAttribute="trailing" secondItem="Gvk-pH-tVe" secondAttribute="trailing" id="fMZ-iz-Vco"/>
+                        <constraint firstItem="25A-5J-s6l" firstAttribute="leading" secondItem="A8F-3A-cMo" secondAttribute="leading" id="j9N-l2-h3r"/>
+                        <constraint firstAttribute="trailing" secondItem="7mr-Iu-3WK" secondAttribute="trailing" id="lRe-n7-wcg"/>
+                        <constraint firstItem="Mqo-IK-Eq9" firstAttribute="leading" secondItem="A8F-3A-cMo" secondAttribute="leading" id="pNz-PU-Iy1"/>
+                        <constraint firstItem="Gvk-pH-tVe" firstAttribute="leading" secondItem="A8F-3A-cMo" secondAttribute="leading" id="vzb-Nl-i9L"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <constraints>
@@ -98,6 +149,8 @@
                 <outlet property="sensor2NameLabel" destination="gBw-4I-by9" id="LCS-k4-e9L"/>
                 <outlet property="sensor3Label" destination="dFl-If-MCt" id="V0O-SD-xs8"/>
                 <outlet property="sensor3NameLabel" destination="4Dc-Ka-RI9" id="zf6-WQ-NwC"/>
+                <outlet property="sensor4Label" destination="dSw-Sw-3Db" id="77m-lA-8KD"/>
+                <outlet property="sensor4NameLabel" destination="pdl-Ny-k7S" id="jQL-lA-h5K"/>
                 <outlet property="titleLabel" destination="Q4y-UC-18j" id="y1a-Qs-Xgx"/>
             </connections>
             <point key="canvasLocation" x="41" y="275"/>

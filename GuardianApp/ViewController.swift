@@ -42,15 +42,44 @@ class ViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
         }).disposed(by: disposeBag)
         
+        self.lastVisitedPlace = guardianPlaces.first!
+        FirebaseManager.sharedInstance.listenForAllSensorUpdates(){ (sensorsDict: [String : [SensorModel]]) in
+            var info = [String]()
+            info.append("Detected high value of LPG in the air!\n")
+            info.append("Detected Fire!\n")
+            info.append("Detected high value of CO in the air!\n")
+            info.append("Detected high temperature!\n")
+            
+            
+            for (key, sensors) in sensorsDict {
+                var changedSensor = [Int]()
+                
+                for (i,sensor) in sensors.enumerated() {
+                    if sensor.value > 0 {
+                        changedSensor.append(i)
+                    }
+                }
+                
+                var message = ""
+                for i in changedSensor {
+                    message += info[i]
+                }
+                message.removeLast(1)
+                self.presentAlertView(title: "DANGER in \(key)!", info: message)
+            }
+            
+        }
+        
         for place in guardianPlaces {
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "sensor1")
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "sensor2")
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "sensor3")
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "TempSensor")
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "COSensor")
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "LPGSensor")
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "FlameSensor")
         }
         
         
         GuardManager.sharedInstance.fetchCameraAddress { (response) in
-//            guard let resp = response as? CameraResponseModel else { return }
+            guard let resp = response as? CameraResponseModel else { return }
 //            DispatchQueue.main.async {
 //                let videoURL = URL(string: resp.cameraAddress!)
 //                let player = AVPlayer(url: videoURL!)
@@ -60,7 +89,7 @@ class ViewController: UIViewController {
 //                player.play()
 //            }
             StreamManager.sharedInstance.playStreamOn(view: self.playerView)
-            StreamManager.sharedInstance.streamVideoFrom(urlString: "ASD")
+            StreamManager.sharedInstance.streamVideoFrom(urlString: resp.cameraAddress!)
         }
         
         lastVisitedPlace = guardianPlaces.first!
@@ -102,6 +131,12 @@ class ViewController: UIViewController {
             lastSelectedIndexPath =  IndexPath(item: 0, section: 0)
         }
         firstLayoutSubview = false
+    }
+    
+    func presentAlertView(title: String, info: String) {
+        let alertController = UIAlertController(title: title, message: info, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func addLine() {

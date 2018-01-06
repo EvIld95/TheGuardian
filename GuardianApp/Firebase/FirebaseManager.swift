@@ -43,6 +43,61 @@ class FirebaseManager {
         })
     }
     
+    func listenForAllSensorUpdates(completion: @escaping ([String : [SensorModel]]) -> ()) {
+        let ref = Database.database().reference().child("sensor")
+        var sensors = [String : [SensorModel]]()
+        
+        handlerSensorUpdates = ref.observe(.childChanged, with: { (snapshot) in
+            sensors.removeAll()
+            //print(snapshot.value)
+            if let array = snapshot.value as? [String: [String: AnyObject]] {
+                //print(array)
+//                //MARK: TO DO
+//                //Separete and search only sensors from raspberry of the current user
+                sensors[snapshot.key] = [SensorModel]()
+                
+                for (sensorName, innerDict) in array {
+                    
+                    let sensor = SensorModel()
+                    sensor.raspSerial = snapshot.key
+                    sensor.name = sensorName
+                    sensor.value = innerDict["value"]! as! Double
+                    
+                    sensors[snapshot.key]!.append(sensor)
+                }
+                //print(sensors)
+                completion(sensors)
+            }
+            
+        })
+    }
+            
+//                    //print(dict[dictKey])
+//                    let innerDict = (dict[dictKey] as! [Dictionary<String, AnyObject>])
+//
+//                    for sensorDevice in innerDict {
+//                        print(sensorDevice)
+//                        //for sensorDict =
+//                        //for
+////                        let sensor = SensorModel()
+////                        sensor.raspSerial = dictKey
+////                        sensor.name = sensorName
+////                        sensor.value = innerDict[sensorName]!["value"]! as! Double
+////                        if var array = sensors[dictKey] {
+////                            array.append(sensor)
+////                        } else {
+////                            sensors[dictKey] = [SensorModel]()
+////                            sensors[dictKey]!.append(sensor)
+////                        }
+//
+//                    }
+//                }
+//                //print(sensors)
+//                //completion(sensors)
+//            }
+//       })
+//    }
+    
     func stopListenForSensorUpdates(raspSerial: String) {
         let ref = Database.database().reference().child("sensor").child(raspSerial)
         ref.removeObserver(withHandle: handlerSensorUpdates)

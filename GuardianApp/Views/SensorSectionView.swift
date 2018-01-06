@@ -13,11 +13,12 @@ class SensorSectionView: UIView, SectionViewDisplayer {
     @IBOutlet weak var sensor1Label: UILabel!
     @IBOutlet weak var sensor2Label: UILabel!
     @IBOutlet weak var sensor3Label: UILabel!
-    
+    @IBOutlet weak var sensor4Label: UILabel!
     
     @IBOutlet weak var sensor1NameLabel: UILabel!
     @IBOutlet weak var sensor2NameLabel: UILabel!
     @IBOutlet weak var sensor3NameLabel: UILabel!
+    @IBOutlet weak var sensor4NameLabel: UILabel!
     
     var place: String!
     
@@ -31,18 +32,31 @@ class SensorSectionView: UIView, SectionViewDisplayer {
     }
     
     func adjustSectionView(withSectionName section: String!) {
-        
         self.titleLabel.text = "Sensors Status from \(section!) "
         self.place = section!
         FirebaseManager.sharedInstance.listenForSensorUpdates(raspSerial: section!) { sensors in
             self.sensor1NameLabel.text = sensors[0].name
             self.sensor2NameLabel.text = sensors[1].name
             self.sensor3NameLabel.text = sensors[2].name
+            self.sensor4NameLabel.text = sensors[3].name
             
-            self.sensor1Label.text = "\(sensors[0].value ?? 0.0)"
-            self.sensor2Label.text = "\(sensors[1].value ?? 0.0)"
-            self.sensor3Label.text = "\(sensors[2].value ?? 0.0)"
-            print(sensors)
+            self.sensor1Label.text = sensors[0].value > 0 ? "HIGH VALUE!" : "OK"
+            self.sensor1Label.textColor = sensors[0].value > 0 ? .red : .green
+            self.sensor2Label.text = sensors[1].value > 0 ? "HIGH VALUE!" : "OK"
+            self.sensor2Label.textColor = sensors[1].value > 0 ? .red : .green
+            self.sensor3Label.text = sensors[2].value > 0 ? "HIGH VALUE!" : "OK"
+            self.sensor3Label.textColor = sensors[2].value > 0 ? .red : .green
+            self.sensor4Label.text = sensors[3].value > 0 ? "HIGH VALUE!" : "OK"
+            self.sensor4Label.textColor = sensors[3].value > 0 ? .red : .green
+        }
+        
+        func presentAlertView(title: String, info: String) {
+            if let parent = self.parentViewController {
+                let alertController = UIAlertController(title: title, message: info, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                parent.present(alertController, animated: true, completion: nil)
+            }
+            
         }
     }
     
