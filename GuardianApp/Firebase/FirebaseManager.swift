@@ -71,32 +71,6 @@ class FirebaseManager {
             
         })
     }
-            
-//                    //print(dict[dictKey])
-//                    let innerDict = (dict[dictKey] as! [Dictionary<String, AnyObject>])
-//
-//                    for sensorDevice in innerDict {
-//                        print(sensorDevice)
-//                        //for sensorDict =
-//                        //for
-////                        let sensor = SensorModel()
-////                        sensor.raspSerial = dictKey
-////                        sensor.name = sensorName
-////                        sensor.value = innerDict[sensorName]!["value"]! as! Double
-////                        if var array = sensors[dictKey] {
-////                            array.append(sensor)
-////                        } else {
-////                            sensors[dictKey] = [SensorModel]()
-////                            sensors[dictKey]!.append(sensor)
-////                        }
-//
-//                    }
-//                }
-//                //print(sensors)
-//                //completion(sensors)
-//            }
-//       })
-//    }
     
     func stopListenForSensorUpdates(raspSerial: String) {
         let ref = Database.database().reference().child("sensor").child(raspSerial)

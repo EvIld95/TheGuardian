@@ -34,41 +34,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        appDelegate.receivedNotification.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { (value) in
-            let alertController = UIAlertController(title: "You are fucked!", message: "\(value)", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-        }).disposed(by: disposeBag)
+        setupRx()
         
         self.lastVisitedPlace = guardianPlaces.first!
-        FirebaseManager.sharedInstance.listenForAllSensorUpdates(){ (sensorsDict: [String : [SensorModel]]) in
-            var info = [String]()
-            info.append("Detected high value of LPG in the air!\n")
-            info.append("Detected Fire!\n")
-            info.append("Detected high value of CO in the air!\n")
-            info.append("Detected high temperature!\n")
-            
-            
-            for (key, sensors) in sensorsDict {
-                var changedSensor = [Int]()
-                
-                for (i,sensor) in sensors.enumerated() {
-                    if sensor.value > 0 {
-                        changedSensor.append(i)
-                    }
-                }
-                
-                var message = ""
-                for i in changedSensor {
-                    message += info[i]
-                }
-                message.removeLast(1)
-                self.presentAlertView(title: "DANGER in \(key)!", info: message)
-            }
-            
-        }
+        addFirebaseListener()
         
         for place in guardianPlaces {
             FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "TempSensor")
@@ -131,6 +100,44 @@ class ViewController: UIViewController {
             lastSelectedIndexPath =  IndexPath(item: 0, section: 0)
         }
         firstLayoutSubview = false
+    }
+    
+    func setupRx() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.receivedNotification.asObservable().skip(1).distinctUntilChanged().subscribe(onNext: { (value) in
+            let alertController = UIAlertController(title: "Danger!", message: "\(value)", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }).disposed(by: disposeBag)
+    }
+    
+    func addFirebaseListener() {
+        FirebaseManager.sharedInstance.listenForAllSensorUpdates(){ (sensorsDict: [String : [SensorModel]]) in
+            var info = [String]()
+            info.append("Detected high value of LPG in the air!\n")
+            info.append("Detected Fire!\n")
+            info.append("Detected high value of CO in the air!\n")
+            info.append("Detected high temperature!\n")
+            
+            
+            for (key, sensors) in sensorsDict {
+                var changedSensor = [Int]()
+                
+                for (i,sensor) in sensors.enumerated() {
+                    if sensor.value > 0 {
+                        changedSensor.append(i)
+                    }
+                }
+                
+                var message = ""
+                for i in changedSensor {
+                    message += info[i]
+                }
+                message.removeLast(1)
+                self.presentAlertView(title: "DANGER in \(key)!", info: message)
+            }
+        }
     }
     
     func presentAlertView(title: String, info: String) {
