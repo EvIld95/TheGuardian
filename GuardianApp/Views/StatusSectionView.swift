@@ -17,10 +17,20 @@ class StatusSectionView: UIView, SectionViewDisplayer {
     @IBOutlet weak var labelStatus: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     weak var owner: ViewController!
+    var place: String!
     
     func adjustSectionView(withSectionName section: String!) {
+        self.place = section!
         self.labelPlace.text = "Guardian [\(section!)]:"
-        self.labelStatus.text = " \(segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex) ?? "ARMED")"
+        
+        if(UserDefaults.standard.bool(forKey: "NoActive\(self.place)") == true) {
+            self.labelStatus.text = "DISARMED"
+            self.segmentedControl.selectedSegmentIndex = 1
+        } else {
+            self.labelStatus.text = "ARMED"
+            self.segmentedControl.selectedSegmentIndex = 0
+        }
+        
     }
     
     @IBAction func segmentedControlAction(segment: UISegmentedControl!) {
@@ -28,6 +38,17 @@ class StatusSectionView: UIView, SectionViewDisplayer {
         let alertController = UIAlertController(title: "Guard Status", message: "Are you sure you want to \(option) guard control?", preferredStyle: .alert)
         let actionYes = UIAlertAction(title: "Yes", style: .default) { (action) in
             self.labelStatus.text = " \(self.segmentedControl.titleForSegment(at: self.segmentedControl.selectedSegmentIndex) ?? "ARMED")"
+            
+            if self.segmentedControl.selectedSegmentIndex == 1 { //disarmed
+                UserDefaults.standard.set(true, forKey: "NoActive\(self.place)")
+                UserDefaults.standard.synchronize()
+                FirebaseManager.sharedInstance.stopListenForSensorUpdates(inPlace: self.place)
+            } else {
+                UserDefaults.standard.set(false, forKey: "NoActive\(self.place)")
+                UserDefaults.standard.synchronize()
+                let viewController = self.parentViewController! as! ViewController
+                viewController.addFirebaseListener()
+            }
         }
         let actionNo = UIAlertAction(title: "no", style: .cancel, handler: nil)
         alertController.addAction(actionYes)

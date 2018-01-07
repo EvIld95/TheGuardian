@@ -40,10 +40,10 @@ class ViewController: UIViewController {
         addFirebaseListener()
         
         for place in guardianPlaces {
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "TempSensor")
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "COSensor")
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "LPGSensor")
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "FlameSensor")
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "TempSensor", place: place)
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "COSensor", place: place)
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "LPGSensor", place: place)
+            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "FlameSensor", place: place)
         }
         
         
@@ -80,9 +80,8 @@ class ViewController: UIViewController {
         
         collectionView.setNeedsLayout()
         collectionView.layoutIfNeeded()
-        //collectionView.reloadItems(at: [lastSelectedIndexPath!])
         
-        //addLine()
+        addLine()
         
     }
     
@@ -113,29 +112,36 @@ class ViewController: UIViewController {
     }
     
     func addFirebaseListener() {
+        FirebaseManager.sharedInstance.addRaspNames(rasps: guardianPlaces)
+        FirebaseManager.sharedInstance.stopListenForAllSensorsUpdates()
+        //listen only for active sensors
         FirebaseManager.sharedInstance.listenForAllSensorUpdates(){ (sensorsDict: [String : [SensorModel]]) in
-            var info = [String]()
-            info.append("Detected high value of LPG in the air!\n")
-            info.append("Detected Fire!\n")
-            info.append("Detected high value of CO in the air!\n")
-            info.append("Detected high temperature!\n")
+            var info = [String: String]()
+            info["LPGSensor"] = "Detected high value of LPG in the air!\n"
+            info["FlameSensor"] = "Detected Fire!\n"
+            info["COSensor"] = "Detected high value of CO in the air!\n"
+            info["TempSensor"] = "Detected high temperature!\n"
             
+            //print(sensorsDict)
             
             for (key, sensors) in sensorsDict {
-                var changedSensor = [Int]()
-                
-                for (i,sensor) in sensors.enumerated() {
-                    if sensor.value > 0 {
-                        changedSensor.append(i)
-                    }
-                }
-                
+//                var changedSensor = [Int]()
+//
+//                for (i,sensor) in sensors.enumerated() {
+//                    if sensor.value > 0 {
+//                        changedSensor.append(i)
+//                    }
+//                }
+//
                 var message = ""
-                for i in changedSensor {
-                    message += info[i]
+                for sensor in sensors where sensor.value > 0 {
+                    message += info[sensor.name]!
                 }
-                message.removeLast(1)
-                self.presentAlertView(title: "DANGER in \(key)!", info: message)
+                
+                if message.count > 0 {
+                    message.removeLast(1)
+                    self.presentAlertView(title: "DANGER in \(key)!", info: message)
+                }
             }
         }
     }

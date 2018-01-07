@@ -14,6 +14,6 @@ class SensorModel {
     var name: String!
     var raspSerial: String!
     var value: Double!
-   // var place: String!
+    var place: String!
     
 }
