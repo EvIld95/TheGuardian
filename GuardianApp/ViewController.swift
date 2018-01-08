@@ -49,16 +49,17 @@ class ViewController: UIViewController {
         
         GuardManager.sharedInstance.fetchCameraAddress { (response) in
             guard let resp = response as? CameraResponseModel else { return }
-//            DispatchQueue.main.async {
-//                let videoURL = URL(string: resp.cameraAddress!)
-//                let player = AVPlayer(url: videoURL!)
-//                let playerLayer = AVPlayerLayer(player: player)
-//                playerLayer.frame = self.playerView.bounds
-//                self.playerView.layer.addSublayer(playerLayer)
-//                player.play()
-//            }
-            StreamManager.sharedInstance.playStreamOn(view: self.playerView)
-            StreamManager.sharedInstance.streamVideoFrom(urlString: resp.cameraAddress!)
+            print(resp.cameraAddress!)
+            DispatchQueue.main.async {
+                let videoURL = URL(string: resp.cameraAddress!)
+                let player = AVPlayer(url: videoURL!)
+                let playerLayer = AVPlayerLayer(player: player)
+                playerLayer.frame = self.playerView.bounds
+                self.playerView.layer.addSublayer(playerLayer)
+                player.play()
+            }
+            //StreamManager.sharedInstance.playStreamOn(view: self.playerView)
+            //StreamManager.sharedInstance.streamVideoFrom(urlString: resp.cameraAddress!)
         }
         
         lastVisitedPlace = guardianPlaces.first!
@@ -81,7 +82,7 @@ class ViewController: UIViewController {
         collectionView.setNeedsLayout()
         collectionView.layoutIfNeeded()
         
-        addLine()
+        //addLine()
         
     }
     

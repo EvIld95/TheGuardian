@@ -50,15 +50,15 @@ class StreamManager {
     
     func streamVideoFrom(urlString: String) {
         guard let streamView = self.streamView else { print("ADD STREAM VIEW"); return}
-        
-        let videoURL = URL(string: urlString)
-        let player = AVPlayer(url: videoURL!)
-        let playerLayer = AVPlayerLayer(player: player)
-        self.currentPlayer = player
-        self.currentUrlString = urlString
-        playerLayer.player = player
-        playerLayer.frame = streamView.bounds
         DispatchQueue.main.async {
+            let videoURL = URL(string: urlString)
+            let player = AVPlayer(url: videoURL!)
+            let playerLayer = AVPlayerLayer(player: player)
+            self.currentPlayer = player
+            self.currentUrlString = urlString
+            playerLayer.player = player
+            playerLayer.frame = streamView.bounds
+        
             streamView.layer.addSublayer(playerLayer)
             player.play()
         }

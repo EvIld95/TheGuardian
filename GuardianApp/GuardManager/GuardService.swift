@@ -15,7 +15,7 @@ enum GuardService {
 }
 
 extension GuardService: TargetType {
-    var baseURL: URL { return URL(string: "http://52.236.165.15:8080/v1")! }
+    var baseURL: URL { return URL(string: "http://52.236.165.15:80/v1")! }
     var path: String {
         switch self {
         case .cameraAddress:
