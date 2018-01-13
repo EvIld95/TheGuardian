@@ -20,72 +20,62 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="224"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="A8F-3A-cMo">
-                    <rect key="frame" x="0.0" y="10" width="390" height="204"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="A8F-3A-cMo">
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="219"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4y-UC-18j">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="41"/>
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="42"/>
                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mqo-IK-Eq9">
-                            <rect key="frame" x="0.0" y="41" width="390" height="40.5"/>
+                            <rect key="frame" x="0.0" y="44" width="390" height="42.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6v-Wi-R2t">
-                                    <rect key="frame" x="0.0" y="0.0" width="195" height="40.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="42.5"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pl1-D5-7BF">
-                                    <rect key="frame" x="195" y="0.0" width="195" height="40.5"/>
-                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nq7-Wd-cA6">
+                                    <rect key="frame" x="195" y="0.0" width="195" height="42.5"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="pl1-D5-7BF" firstAttribute="leading" secondItem="M6v-Wi-R2t" secondAttribute="trailing" id="2qt-sV-5en"/>
-                                <constraint firstItem="pl1-D5-7BF" firstAttribute="leading" secondItem="M6v-Wi-R2t" secondAttribute="trailing" id="lJV-kP-lHP"/>
                                 <constraint firstItem="M6v-Wi-R2t" firstAttribute="leading" secondItem="Mqo-IK-Eq9" secondAttribute="leading" id="mnG-bi-e1N"/>
-                                <constraint firstAttribute="trailing" secondItem="pl1-D5-7BF" secondAttribute="trailing" id="sBs-On-xV0"/>
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7mr-Iu-3WK">
-                            <rect key="frame" x="0.0" y="81.5" width="390" height="41"/>
+                            <rect key="frame" x="0.0" y="88.5" width="390" height="42"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor2" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBw-4I-by9">
-                                    <rect key="frame" x="0.0" y="0.0" width="195" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="42"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8F5-Bs-Da9">
-                                    <rect key="frame" x="195" y="0.0" width="195" height="41"/>
-                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XLe-IC-8bd">
+                                    <rect key="frame" x="195" y="0.0" width="195" height="42"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="gBw-4I-by9" firstAttribute="leading" secondItem="7mr-Iu-3WK" secondAttribute="leading" id="4gL-ab-tp0"/>
-                                <constraint firstItem="8F5-Bs-Da9" firstAttribute="leading" secondItem="gBw-4I-by9" secondAttribute="trailing" id="WjI-Tn-XAJ"/>
-                                <constraint firstAttribute="trailing" secondItem="8F5-Bs-Da9" secondAttribute="trailing" id="omg-uI-g2F"/>
-                                <constraint firstItem="8F5-Bs-Da9" firstAttribute="leading" secondItem="gBw-4I-by9" secondAttribute="trailing" id="ynt-ic-HIV"/>
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="25A-5J-s6l">
-                            <rect key="frame" x="0.0" y="122.5" width="390" height="40.5"/>
+                            <rect key="frame" x="0.0" y="132.5" width="390" height="42.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor3" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dc-Ka-RI9">
-                                    <rect key="frame" x="0.0" y="0.0" width="195" height="40.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="42.5"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFl-If-MCt">
-                                    <rect key="frame" x="195" y="0.0" width="195" height="40.5"/>
+                                    <rect key="frame" x="195" y="0.0" width="195" height="42.5"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -99,16 +89,16 @@
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gvk-pH-tVe">
-                            <rect key="frame" x="0.0" y="163" width="390" height="41"/>
+                            <rect key="frame" x="0.0" y="177" width="390" height="42"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor4" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdl-Ny-k7S">
-                                    <rect key="frame" x="0.0" y="0.0" width="195" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="42"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSw-Sw-3Db">
-                                    <rect key="frame" x="195" y="0.0" width="195" height="41"/>
+                                    <rect key="frame" x="195" y="0.0" width="195" height="42"/>
                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -137,15 +127,15 @@
             <constraints>
                 <constraint firstItem="A8F-3A-cMo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0c3-Ru-Kv8"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="A8F-3A-cMo" secondAttribute="trailing" id="DDZ-OZ-lTL"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="A8F-3A-cMo" secondAttribute="bottom" constant="10" id="Qtz-nC-dIO"/>
-                <constraint firstItem="A8F-3A-cMo" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="Suv-FG-5uX"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="A8F-3A-cMo" secondAttribute="bottom" constant="5" id="Qtz-nC-dIO"/>
+                <constraint firstItem="A8F-3A-cMo" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Suv-FG-5uX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="sensor1Label" destination="pl1-D5-7BF" id="Dcx-VR-wqz"/>
+                <outlet property="leftView" destination="nq7-Wd-cA6" id="ruf-cN-JHW"/>
+                <outlet property="rightView" destination="XLe-IC-8bd" id="624-DZ-BSB"/>
                 <outlet property="sensor1NameLabel" destination="M6v-Wi-R2t" id="bZD-ek-R5G"/>
-                <outlet property="sensor2Label" destination="8F5-Bs-Da9" id="ZOX-h1-mHl"/>
                 <outlet property="sensor2NameLabel" destination="gBw-4I-by9" id="LCS-k4-e9L"/>
                 <outlet property="sensor3Label" destination="dFl-If-MCt" id="V0O-SD-xs8"/>
                 <outlet property="sensor3NameLabel" destination="4Dc-Ka-RI9" id="zf6-WQ-NwC"/>

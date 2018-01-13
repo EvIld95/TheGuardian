@@ -142,4 +142,10 @@ class LoginViewController: UIViewController {
     @objc func touchedView() {
         hideKeyboard()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navController = segue.destination as! UINavigationController
+        let viewController = navController.topViewController as! ViewController
+        viewController.loggedInUserMail = self.emailAddressTextField.text!
+    }
 }

@@ -16,4 +16,5 @@ target 'GuardianApp' do
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'M13ProgressSuite'
 end

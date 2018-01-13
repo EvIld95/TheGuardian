@@ -15,19 +15,19 @@ class FirebaseManager {
     static let sharedInstance = FirebaseManager()
     
     var handlerSensorUpdates: UInt!
-    var raspNames : [String]?
+    var serialToPlaceDict : Dictionary<String, String>?
+    var previousValuesOfRasp = [String: Double]()
     var handlersOfAllRaspsDict = [String: UInt]()
     
     func addNewSensor(raspSerial: String, name: String!, place: String!) {
         let ref = Database.database().reference()
-        ref.child("sensor").child(raspSerial).updateChildValues([name : ["value" : 0.0, "place" : place]])
+        ref.child("sensor").child(raspSerial).updateChildValues([name : ["value" : 0.0]])
     }
     
-    func addRaspNames(rasps: [String]) {
-        self.raspNames?.removeAll()
-        self.raspNames = rasps
+    func addSerialToPlaceDict(dict: Dictionary<String, String>) {
+        self.serialToPlaceDict?.removeAll()
+        self.serialToPlaceDict = dict
     }
-    
     
     func listenForSensorUpdates(raspSerial: String, completion: @escaping ([SensorModel]) -> ()) {
         let ref = Database.database().reference().child("sensor").child(raspSerial)
@@ -51,31 +51,28 @@ class FirebaseManager {
         })
     }
     
-    func listenForAllSensorUpdates(completion: @escaping ([String : [SensorModel]]) -> ()) {
-        guard let raspNames = raspNames else { return }
-        
+    func listenForAllSensorUpdates(completion: @escaping (SensorModel) -> ()) {
+        guard let serialToPlaceDict = serialToPlaceDict else { return }
         
         let ref = Database.database().reference().child("sensor")
-        var sensors = [String : [SensorModel]]()
         
-        for place in raspNames {
-            if(UserDefaults.standard.bool(forKey: "NoActive\(place)") == false) {
-                handlersOfAllRaspsDict[place] = ref.child(place).observe(.childChanged, with: { (snapshot) in
-                    sensors.removeAll()
+        for (raspSerial, name) in serialToPlaceDict {
+            if(UserDefaults.standard.bool(forKey: "NoActive\(raspSerial)") == false) {
+                handlersOfAllRaspsDict[raspSerial] = ref.child(raspSerial).observe(.childChanged, with: { (snapshot) in
                     print(snapshot.key)
                     if let dict = snapshot.value as? Dictionary<String, AnyObject> {
-                        sensors[dict["place"]! as! String] = [SensorModel]()
-                        
                         let sensor = SensorModel()
-                        sensor.raspSerial = place
+                        sensor.raspSerial = raspSerial
                         sensor.name = snapshot.key
                         sensor.value = dict["value"]! as! Double
-                        sensor.place = dict["place"]! as! String
-                        sensors[dict["place"]! as! String]!.append(sensor)
-                        
-                        completion(sensors)
+                        sensor.place = name
+                        if let pv = self.previousValuesOfRasp[sensor.raspSerial] {
+                            if sensor.value! - pv > 0 {
+                                completion(sensor)
+                            }
+                        }
+                        self.previousValuesOfRasp[sensor.raspSerial] = sensor.value
                     }
-                    
                 })
             }
         }
@@ -113,16 +110,23 @@ class FirebaseManager {
     
     func stopListenForSensorUpdates(inPlace: String) {
         
-        //TO DO: Concert inPlace to raspSerial
-        let ref = Database.database().reference().child("sensor").child(inPlace)
-        ref.removeObserver(withHandle: handlersOfAllRaspsDict[inPlace]!)
+        let raspSerial = self.getRaspSerialFromPlace(place: inPlace)
+        let ref = Database.database().reference().child("sensor").child(raspSerial)
+        ref.removeObserver(withHandle: handlersOfAllRaspsDict[raspSerial]!)
+    }
+    
+    func getRaspSerialFromPlace(place:String) -> String {
+        return self.serialToPlaceDict!.filter { (key, value) -> Bool in
+            return value == place
+            }.map { (key, value) -> String in
+                return key }.first!
     }
     
     func stopListenForAllSensorsUpdates() {
-        guard let raspNames = raspNames else { return }
+        guard let serialToPlaceDict = serialToPlaceDict else { return }
         
-        for place in raspNames {
-            let ref = Database.database().reference().child("sensor").child(place)
+        for raspSerial in serialToPlaceDict.keys {
+            let ref = Database.database().reference().child("sensor").child(raspSerial)
             ref.removeAllObservers()
         }
     }

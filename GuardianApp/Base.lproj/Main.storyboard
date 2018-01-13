@@ -29,13 +29,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wpj-MZ-cgH">
-                                <rect key="frame" x="20" y="30" width="335" height="545.5"/>
+                                <rect key="frame" x="20" y="30" width="335" height="829"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guardLogo" translatesAutoresizingMaskIntoConstraints="NO" id="D6f-cn-Ol2">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="333.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="617"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="GKo-lL-7T6">
-                                        <rect key="frame" x="0.0" y="343.5" width="335" height="202"/>
+                                        <rect key="frame" x="0.0" y="627" width="335" height="202"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="V7M-Xj-24X">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="170"/>
@@ -226,7 +226,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1Tk-Zm-nuX">
                                         <rect key="frame" x="0.0" y="480" width="375" height="20"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cameras" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mw-bK-pl1">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guards" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mw-bK-pl1">
                                                 <rect key="frame" x="8" y="0.0" width="359" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="hqQ-dK-WMJ"/>

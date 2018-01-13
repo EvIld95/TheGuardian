@@ -17,13 +17,17 @@ class StatusSectionView: UIView, SectionViewDisplayer {
     @IBOutlet weak var labelStatus: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     weak var owner: ViewController!
+    var raspSerial: String!
     var place: String!
     
     func adjustSectionView(withSectionName section: String!) {
-        self.place = section!
-        self.labelPlace.text = "Guardian [\(section!)]:"
         
-        if(UserDefaults.standard.bool(forKey: "NoActive\(self.place)") == true) {
+        self.raspSerial = FirebaseManager.sharedInstance.getRaspSerialFromPlace(place: section!)
+        self.labelPlace.text = "Guardian [\(section!)]:"
+        self.place = section!
+        
+        
+        if(UserDefaults.standard.bool(forKey: "NoActive\(self.raspSerial)") == true) {
             self.labelStatus.text = "DISARMED"
             self.segmentedControl.selectedSegmentIndex = 1
         } else {
@@ -40,11 +44,11 @@ class StatusSectionView: UIView, SectionViewDisplayer {
             self.labelStatus.text = " \(self.segmentedControl.titleForSegment(at: self.segmentedControl.selectedSegmentIndex) ?? "ARMED")"
             
             if self.segmentedControl.selectedSegmentIndex == 1 { //disarmed
-                UserDefaults.standard.set(true, forKey: "NoActive\(self.place)")
+                UserDefaults.standard.set(true, forKey: "NoActive\(self.raspSerial)")
                 UserDefaults.standard.synchronize()
                 FirebaseManager.sharedInstance.stopListenForSensorUpdates(inPlace: self.place)
             } else {
-                UserDefaults.standard.set(false, forKey: "NoActive\(self.place)")
+                UserDefaults.standard.set(false, forKey: "NoActive\(self.raspSerial)")
                 UserDefaults.standard.synchronize()
                 let viewController = self.parentViewController! as! ViewController
                 viewController.addFirebaseListener()

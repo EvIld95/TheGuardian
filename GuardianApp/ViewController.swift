@@ -27,24 +27,35 @@ class ViewController: UIViewController {
     var firstLayoutSubview = true
     @IBOutlet weak var warningButton: UIButton!
     var lastSelectedIndexPath: IndexPath?
+    var loggedInUserMail: String!
+    
     let disposeBag = DisposeBag()
+    
+    
+    var serialToPlaceDict = Dictionary<String, String>()
     
     var guardianPlaces = ["Salon", "Hall", "Garage", "Bedroom", "Kitchen", "Outside", "Child Room", "Dining Room", "Tarrace"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for (i, place) in guardianPlaces.enumerated() {
+            serialToPlaceDict["rasp\(i)Serial"] = place
+        }
+        
+        
+        
         setupRx()
         
         self.lastVisitedPlace = guardianPlaces.first!
         addFirebaseListener()
         
-        for place in guardianPlaces {
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "TempSensor", place: place)
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "COSensor", place: place)
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "LPGSensor", place: place)
-            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "FlameSensor", place: place)
-        }
+//        for place in serialToPlaceDict.keys {
+//            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "TempSensor", place: place)
+//            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "COSensor", place: place)
+//            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "LPGSensor", place: place)
+//            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "FlameSensor", place: place)
+//        }
         
         
         GuardManager.sharedInstance.fetchCameraAddress { (response) in
@@ -113,37 +124,29 @@ class ViewController: UIViewController {
     }
     
     func addFirebaseListener() {
-        FirebaseManager.sharedInstance.addRaspNames(rasps: guardianPlaces)
+        FirebaseManager.sharedInstance.addSerialToPlaceDict(dict: serialToPlaceDict)
         FirebaseManager.sharedInstance.stopListenForAllSensorsUpdates()
         //listen only for active sensors
-        FirebaseManager.sharedInstance.listenForAllSensorUpdates(){ (sensorsDict: [String : [SensorModel]]) in
+        FirebaseManager.sharedInstance.listenForAllSensorUpdates(){ (sensor: SensorModel) in
             var info = [String: String]()
             info["LPGSensor"] = "Detected high value of LPG in the air!\n"
             info["FlameSensor"] = "Detected Fire!\n"
             info["COSensor"] = "Detected high value of CO in the air!\n"
             info["TempSensor"] = "Detected high temperature!\n"
             
-            //print(sensorsDict)
+            var message = ""
             
-            for (key, sensors) in sensorsDict {
-//                var changedSensor = [Int]()
-//
-//                for (i,sensor) in sensors.enumerated() {
-//                    if sensor.value > 0 {
-//                        changedSensor.append(i)
-//                    }
-//                }
-//
-                var message = ""
-                for sensor in sensors where sensor.value > 0 {
-                    message += info[sensor.name]!
-                }
-                
-                if message.count > 0 {
-                    message.removeLast(1)
-                    self.presentAlertView(title: "DANGER in \(key)!", info: message)
-                }
+            if(sensor.value > 0.3 && sensor.name != "TempSensor") {
+                message += info[sensor.name]!
+            } else if(sensor.value > 30) {
+                message += info[sensor.name]!
             }
+            
+            if message.count > 0 {
+                message.removeLast(1)
+                self.presentAlertView(title: "DANGER in \(sensor.place!)!", info: message)
+            }
+        
         }
     }
     
@@ -267,45 +270,68 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return guardianPlaces.count
+        return guardianPlaces.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! GuardianCollectionViewCell
-        cell.imageView.image = UIImage(named: "camera")
-        cell.label.text = guardianPlaces[indexPath.row]
+        
+        if(indexPath.row == guardianPlaces.count) {
+            cell.imageView.image = UIImage(named: "add")
+            cell.label.text = "New"
+            cell.label.textColor = .red
+        } else {
+            cell.imageView.image = UIImage(named: "camera")
+            cell.label.text = guardianPlaces[indexPath.row]
+            cell.label.textColor = .black
+        }
         
         if(cell.isSelected) {
             cell.backgroundColor = cell.selectionColor
         } else {
             cell.backgroundColor = cell.defaultColor
         }
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! GuardianCollectionViewCell
+        //guard indexPath.row != guardianPlaces.count else { return }
         guard lastSelectedIndexPath!.item != indexPath.item else { return }
         
-        cell.backgroundColor = cell.selectionColor
-        self.placeLabel.text = cell.label.text
-        lastVisitedPlace = cell.label.text
-        let subview = self.contentView.subviews.first! as! SectionViewDisplayer
-        subview.adjustSectionView(withSectionName: cell.label.text)
-        
-        collectionView.deselectItem(at: lastSelectedIndexPath!, animated: false)
-//        if let cellLast = collectionView.cellForItem(at: lastSelectedIndexPath!) as? GuardianCollectionViewCell {
-//            cellLast.backgroundColor = cellLast.defaultColor
-//        }
-        collectionView.reloadItems(at: [lastSelectedIndexPath!])
-        lastSelectedIndexPath = indexPath
+        if(indexPath.row == guardianPlaces.count) {
+            let alertController = UIAlertController(title: "Add new guard", message: "Write guard serial", preferredStyle: .alert)
+            
+            alertController.addTextField(configurationHandler: {(_ textField: UITextField) -> Void in
+                textField.placeholder = "Serial number"
+            })
+            
+            alertController.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
+                print("SENDED")
+            }))
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            cell.backgroundColor = cell.selectionColor
+            self.placeLabel.text = cell.label.text
+            lastVisitedPlace = cell.label.text
+            let subview = self.contentView.subviews.first! as! SectionViewDisplayer
+            subview.adjustSectionView(withSectionName: cell.label.text)
+            
+            collectionView.deselectItem(at: lastSelectedIndexPath!, animated: false)
+    //        if let cellLast = collectionView.cellForItem(at: lastSelectedIndexPath!) as? GuardianCollectionViewCell {
+    //            cellLast.backgroundColor = cellLast.defaultColor
+    //        }
+            collectionView.reloadItems(at: [lastSelectedIndexPath!])
+            lastSelectedIndexPath = indexPath
+        }
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height - 20
-        let width = height / 1.1
+        let width = height / 0.9
         return CGSize(width: width, height: height)
     }
     
