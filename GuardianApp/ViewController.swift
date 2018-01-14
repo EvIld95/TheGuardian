@@ -22,6 +22,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var camerasLabel: UILabel!
+    @IBOutlet weak var buttonSensors: UIButton!
+    @IBOutlet weak var buttonHistoryNotification: UIButton!
+    @IBOutlet weak var buttonStream: UIButton!
+    @IBOutlet weak var buttonSetting: UIButton!
     
     
     var lastTouchedButton: UIButton?
@@ -34,7 +38,7 @@ class ViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     
-    var serialToPlaceDict = Dictionary<String, String>()
+    var serialToPlaceDict = Variable<Dictionary<String, String>>(Dictionary<String, String>())
     var sortedKeys = [String]()
     //var guardianPlaces = ["Salon", "Hall", "Garage", "Bedroom", "Kitchen", "Outside", "Child Room", "Dining Room", "Tarrace"]
     
@@ -44,26 +48,22 @@ class ViewController: UIViewController {
 //        for (i, place) in guardianPlaces.enumerated() {
 //            serialToPlaceDict["rasp\(i)Serial"] = place
 //        }
+       
+        
         MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        setupRx()
         GuardManager.sharedInstance.getMyRaspberries { (response) in
             guard let rasp = response as? RaspberriesModel else { return }
             
-            for (raspSerial, name) in rasp.raspberries {
-                self.serialToPlaceDict[raspSerial] = name
-            }
-            
-            self.sortedKeys = self.serialToPlaceDict.keys.sorted(by: { (k1, k2) -> Bool in
-                return k1 < k2
-            })
-            
-            self.lastVisitedPlace = self.serialToPlaceDict[self.sortedKeys.first!]!
+            self.updateRaspberries(rasp: rasp)
             self.setupCustomView(sv: .WarningView)
             MBProgressHUD.hide(for: self.view, animated: true)
             self.collectionView.reloadData()
             self.addFirebaseListener()
         }
         
-        setupRx()
+        
         
         
 //        for place in serialToPlaceDict.keys {
@@ -127,6 +127,20 @@ class ViewController: UIViewController {
         firstLayoutSubview = false
     }
     
+    func updateRaspberries(rasp: RaspberriesModel) {
+        for (raspSerial, name) in rasp.raspberries {
+            self.serialToPlaceDict.value[raspSerial] = name
+        }
+        
+        self.sortedKeys = self.serialToPlaceDict.value.keys.sorted(by: { (k1, k2) -> Bool in
+            return k1 < k2
+        })
+        
+        if let firstKey = self.sortedKeys.first {
+            self.lastVisitedPlace = self.serialToPlaceDict.value[firstKey]
+        }
+    }
+    
     func setupRx() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -135,10 +149,24 @@ class ViewController: UIViewController {
             alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }).disposed(by: disposeBag)
+        
+        self.serialToPlaceDict.asObservable().subscribe(onNext: { (dict) in
+            if dict.count == 0 {
+                self.buttonStream.isEnabled = false
+                self.buttonSensors.isEnabled = false
+                self.buttonSetting.isEnabled = false
+                self.buttonHistoryNotification.isEnabled = false
+            } else {
+                self.buttonStream.isEnabled = true
+                self.buttonSensors.isEnabled = true
+                self.buttonSetting.isEnabled = true
+                self.buttonHistoryNotification.isEnabled = true
+            }
+        }).disposed(by: disposeBag)
     }
     
     func addFirebaseListener() {
-        FirebaseManager.sharedInstance.addSerialToPlaceDict(dict: serialToPlaceDict)
+        FirebaseManager.sharedInstance.addSerialToPlaceDict(dict: serialToPlaceDict.value)
         FirebaseManager.sharedInstance.stopListenForAllSensorsUpdates()
         //listen only for active sensors
         FirebaseManager.sharedInstance.listenForAllSensorUpdates(){ (sensor: SensorModel) in
@@ -284,19 +312,19 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return serialToPlaceDict.count + 1
+        return serialToPlaceDict.value.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! GuardianCollectionViewCell
         
-        if(indexPath.row == serialToPlaceDict.count) {
+        if(indexPath.row == serialToPlaceDict.value.count) {
             cell.imageView.image = UIImage(named: "add")
             cell.label.text = "New"
             cell.label.textColor = .red
         } else {
             cell.imageView.image = UIImage(named: "camera")
-            cell.label.text = serialToPlaceDict[sortedKeys[indexPath.item]]!
+            cell.label.text = serialToPlaceDict.value[sortedKeys[indexPath.item]]!
             cell.label.textColor = .black
         }
         
@@ -311,9 +339,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! GuardianCollectionViewCell
         //guard indexPath.row != guardianPlaces.count else { return }
-        guard lastSelectedIndexPath!.item != indexPath.item else { return }
+        guard lastSelectedIndexPath!.item != indexPath.item || indexPath.item == serialToPlaceDict.value.count else { return }
         
-        if(indexPath.row == serialToPlaceDict.count) {
+        if(indexPath.row == serialToPlaceDict.value.count) {
             let alertController = UIAlertController(title: "Add new guard", message: "Write guard serial", preferredStyle: .alert)
             
             alertController.addTextField(configurationHandler: {(_ textField: UITextField) -> Void in
@@ -321,7 +349,20 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             })
             
             alertController.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
-                GuardManager.sharedInstance.addRaspberryToDatabase(serial: alertController.textFields![0].text!)
+                MBProgressHUD.showAdded(to: self.view, animated: true)
+                GuardManager.sharedInstance.addRaspberryToDatabase(serial: alertController.textFields![0].text!) {
+                    GuardManager.sharedInstance.assignRaspberryToUser(serial: alertController.textFields![0].text!) {
+                        GuardManager.sharedInstance.getMyRaspberries { (response) in
+                            guard let rasp = response as? RaspberriesModel else { return }
+                            
+                            self.updateRaspberries(rasp: rasp)
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            self.collectionView.reloadData()
+                            self.addFirebaseListener()
+                        }
+                    }
+                }
+                
             }))
             
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

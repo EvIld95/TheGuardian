@@ -37,23 +37,36 @@ class GuardManager {
         
     }
     
-    func addRaspberryToDatabase(serial: String) {
+    func addRaspberryToDatabase(serial: String, completion: @escaping () -> ()) {
         let provider = MoyaProvider<GuardService>()
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
             provider.request(.addRaspberry(token: idToken!, raspSerial: serial)) { result in
-                print(result)
+                switch result {
+                case let .success:
+                    completion()
+                    
+                case let .failure:
+                    print("ERROR")
+                }
             }
         }
     }
     
-    func assignRaspberryToUser(serial: String) {
+    func assignRaspberryToUser(serial: String, completion: @escaping () -> ()) {
         let provider = MoyaProvider<GuardService>()
         let currentUser = Auth.auth().currentUser
         let email = Auth.auth().currentUser!.email
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
             provider.request(.assign(token: idToken!, raspSerial: serial, email: email!)) { result in
-                print(result)
+                switch result {
+                case let .success:
+                    print(result)
+                    completion()
+                    
+                case let .failure:
+                    print("ERROR")
+                }
             }
         }
     }

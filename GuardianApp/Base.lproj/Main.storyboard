@@ -29,13 +29,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wpj-MZ-cgH">
-                                <rect key="frame" x="20" y="30" width="335" height="829"/>
+                                <rect key="frame" x="20" y="30" width="335" height="545.5"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guardLogo" translatesAutoresizingMaskIntoConstraints="NO" id="D6f-cn-Ol2">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="617"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="333.5"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="GKo-lL-7T6">
-                                        <rect key="frame" x="0.0" y="627" width="335" height="202"/>
+                                        <rect key="frame" x="0.0" y="343.5" width="335" height="170"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="V7M-Xj-24X">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="170"/>
@@ -82,7 +82,7 @@
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbe-x7-3nI">
-                                                <rect key="frame" x="0.0" y="170" width="335" height="32"/>
+                                                <rect key="frame" x="0.0" y="170" width="335" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                                 <state key="normal" title="Don't have account? Register here!">
                                                     <color key="titleColor" red="0.15694096684455872" green="0.15042370557785034" blue="0.036851800978183746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -316,6 +316,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="b8e-9E-9EP"/>
                     <connections>
+                        <outlet property="buttonHistoryNotification" destination="7Ae-ha-gPe" id="xdW-WF-kfJ"/>
+                        <outlet property="buttonSensors" destination="mNv-xK-cAw" id="hGL-n8-VZs"/>
+                        <outlet property="buttonSetting" destination="keL-LG-Lme" id="Ez8-vY-5gg"/>
+                        <outlet property="buttonStream" destination="I7H-5E-gbD" id="anb-cL-st2"/>
                         <outlet property="camerasLabel" destination="7mw-bK-pl1" id="Uq5-3c-ERS"/>
                         <outlet property="collectionView" destination="oS8-bC-iyW" id="B4X-ew-SG1"/>
                         <outlet property="contentView" destination="ePT-Di-z9C" id="rxp-t2-VJo"/>
