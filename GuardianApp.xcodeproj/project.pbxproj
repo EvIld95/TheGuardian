@@ -38,6 +38,7 @@
 		F771E4011FFEAAEA0034D763 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4001FFEAAEA0034D763 /* FirebaseManager.swift */; };
 		F771E4031FFF9E670034D763 /* SensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4021FFF9E670034D763 /* SensorModel.swift */; };
 		F771E4051FFFEF9A0034D763 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4041FFFEF9A0034D763 /* StreamManager.swift */; };
+		F771E407200BADD10034D763 /* RaspberriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E406200BADD10034D763 /* RaspberriesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		F771E4001FFEAAEA0034D763 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		F771E4021FFF9E670034D763 /* SensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorModel.swift; sourceTree = "<group>"; };
 		F771E4041FFFEF9A0034D763 /* StreamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
+		F771E406200BADD10034D763 /* RaspberriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaspberriesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				F771E3EF1FF7EB770034D763 /* CameraResponseModel.swift */,
+				F771E406200BADD10034D763 /* RaspberriesModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				F71B74901FCC9EF200BE0567 /* StatusSectionView.swift in Sources */,
 				F771E4031FFF9E670034D763 /* SensorModel.swift in Sources */,
 				F771E3F01FF7EB770034D763 /* CameraResponseModel.swift in Sources */,
+				F771E407200BADD10034D763 /* RaspberriesModel.swift in Sources */,
 				F771E3F61FF8F19C0034D763 /* LiveStreamSectionView.swift in Sources */,
 				F71B746A1FC7562800BE0567 /* AppDelegate.swift in Sources */,
 				F71B74981FCCB26500BE0567 /* LoginViewController.swift in Sources */,

@@ -147,5 +147,6 @@ class LoginViewController: UIViewController {
         let navController = segue.destination as! UINavigationController
         let viewController = navController.topViewController as! ViewController
         viewController.loggedInUserMail = self.emailAddressTextField.text!
+        
     }
 }

@@ -78,6 +78,7 @@ class SensorSectionView: UIView, SectionViewDisplayer {
         
         self.titleLabel.text = "Sensors Status from \(section!) "
         //self.place = section!
+        print(FirebaseManager.sharedInstance.serialToPlaceDict!)
         self.raspSerial = FirebaseManager.sharedInstance.serialToPlaceDict!.filter { (key, value) -> Bool in
                 return value == section!
             }.map { (key, value) -> String in

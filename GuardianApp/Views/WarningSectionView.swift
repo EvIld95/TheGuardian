@@ -18,10 +18,15 @@ class WarningSectionView: UIView, SectionViewDisplayer {
     }
     
     func adjustSectionView(withSectionName section: String!) {
-        self.previewButton.layer.cornerRadius = 6
-        self.previewButton.layer.borderColor = UIColor.black.cgColor
-        self.previewButton.layer.borderWidth = 3
-        self.previewButton.clipsToBounds = true
-        self.informationLabel.text = "Last danger in \(section!): \(Date().description)"
+        if let section = section {
+            self.informationLabel.text = "Last danger in \(section): \(Date().description)"
+            self.previewButton.layer.cornerRadius = 6
+            self.previewButton.layer.borderColor = UIColor.black.cgColor
+            self.previewButton.layer.borderWidth = 3
+            self.previewButton.clipsToBounds = true
+        } else {
+            self.informationLabel.text = "No Guards Connected With You"
+            self.previewButton.isHidden = true
+        }
     }
 }

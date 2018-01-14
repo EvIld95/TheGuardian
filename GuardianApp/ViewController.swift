@@ -12,6 +12,7 @@ import AVFoundation
 import Moya
 import RxSwift
 import Firebase
+import MBProgressHUD
 
 
 class ViewController: UIViewController {
@@ -34,21 +35,36 @@ class ViewController: UIViewController {
     
     
     var serialToPlaceDict = Dictionary<String, String>()
-    
-    var guardianPlaces = ["Salon", "Hall", "Garage", "Bedroom", "Kitchen", "Outside", "Child Room", "Dining Room", "Tarrace"]
+    var sortedKeys = [String]()
+    //var guardianPlaces = ["Salon", "Hall", "Garage", "Bedroom", "Kitchen", "Outside", "Child Room", "Dining Room", "Tarrace"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for (i, place) in guardianPlaces.enumerated() {
-            serialToPlaceDict["rasp\(i)Serial"] = place
+//        for (i, place) in guardianPlaces.enumerated() {
+//            serialToPlaceDict["rasp\(i)Serial"] = place
+//        }
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        GuardManager.sharedInstance.getMyRaspberries { (response) in
+            guard let rasp = response as? RaspberriesModel else { return }
+            
+            for (raspSerial, name) in rasp.raspberries {
+                self.serialToPlaceDict[raspSerial] = name
+            }
+            
+            self.sortedKeys = self.serialToPlaceDict.keys.sorted(by: { (k1, k2) -> Bool in
+                return k1 < k2
+            })
+            
+            self.lastVisitedPlace = self.serialToPlaceDict[self.sortedKeys.first!]!
+            self.setupCustomView(sv: .WarningView)
+            MBProgressHUD.hide(for: self.view, animated: true)
+            self.collectionView.reloadData()
+            self.addFirebaseListener()
         }
-        
         
         setupRx()
         
-        self.lastVisitedPlace = guardianPlaces.first!
-        addFirebaseListener()
         
 //        for place in serialToPlaceDict.keys {
 //            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "TempSensor", place: place)
@@ -59,7 +75,6 @@ class ViewController: UIViewController {
         
         
         GuardManager.sharedInstance.fetchCameraAddress { (response) in
-            print(response)
             guard let resp = response as? CameraResponseModel else { return }
             print(resp.cameraAddress!)
             DispatchQueue.main.async {
@@ -74,11 +89,9 @@ class ViewController: UIViewController {
             //StreamManager.sharedInstance.streamVideoFrom(urlString: resp.cameraAddress!)
         }
         
-        lastVisitedPlace = guardianPlaces.first!
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1 ) {
-            self.setupCustomView(sv: .WarningView)
-        }
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1 ) {
+//            self.setupCustomView(sv: .WarningView)
+//        }
         
         setupNavBar()
         warningButton.imageView?.contentMode = .scaleAspectFit
@@ -271,19 +284,19 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return guardianPlaces.count + 1
+        return serialToPlaceDict.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! GuardianCollectionViewCell
         
-        if(indexPath.row == guardianPlaces.count) {
+        if(indexPath.row == serialToPlaceDict.count) {
             cell.imageView.image = UIImage(named: "add")
             cell.label.text = "New"
             cell.label.textColor = .red
         } else {
             cell.imageView.image = UIImage(named: "camera")
-            cell.label.text = guardianPlaces[indexPath.row]
+            cell.label.text = serialToPlaceDict[sortedKeys[indexPath.item]]!
             cell.label.textColor = .black
         }
         
@@ -300,7 +313,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         //guard indexPath.row != guardianPlaces.count else { return }
         guard lastSelectedIndexPath!.item != indexPath.item else { return }
         
-        if(indexPath.row == guardianPlaces.count) {
+        if(indexPath.row == serialToPlaceDict.count) {
             let alertController = UIAlertController(title: "Add new guard", message: "Write guard serial", preferredStyle: .alert)
             
             alertController.addTextField(configurationHandler: {(_ textField: UITextField) -> Void in
@@ -310,6 +323,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             alertController.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
                 GuardManager.sharedInstance.addRaspberryToDatabase(serial: alertController.textFields![0].text!)
             }))
+            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
             self.present(alertController, animated: true, completion: nil)
             
