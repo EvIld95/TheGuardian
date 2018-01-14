@@ -16,6 +16,7 @@ class StatusSectionView: UIView, SectionViewDisplayer {
     @IBOutlet weak var labelPlace: UILabel!
     @IBOutlet weak var labelStatus: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     weak var owner: ViewController!
     var raspSerial: String!
     var place: String!

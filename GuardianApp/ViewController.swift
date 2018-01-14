@@ -11,6 +11,7 @@ import AVKit
 import AVFoundation
 import Moya
 import RxSwift
+import Firebase
 
 
 class ViewController: UIViewController {
@@ -44,7 +45,6 @@ class ViewController: UIViewController {
         }
         
         
-        
         setupRx()
         
         self.lastVisitedPlace = guardianPlaces.first!
@@ -59,6 +59,7 @@ class ViewController: UIViewController {
         
         
         GuardManager.sharedInstance.fetchCameraAddress { (response) in
+            print(response)
             guard let resp = response as? CameraResponseModel else { return }
             print(resp.cameraAddress!)
             DispatchQueue.main.async {
@@ -307,7 +308,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             })
             
             alertController.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
-                print("SENDED")
+                GuardManager.sharedInstance.addRaspberryToDatabase(serial: alertController.textFields![0].text!)
             }))
             
             self.present(alertController, animated: true, completion: nil)

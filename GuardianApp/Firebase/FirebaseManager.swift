@@ -51,6 +51,8 @@ class FirebaseManager {
         })
     }
     
+  
+    
     func listenForAllSensorUpdates(completion: @escaping (SensorModel) -> ()) {
         guard let serialToPlaceDict = serialToPlaceDict else { return }
         

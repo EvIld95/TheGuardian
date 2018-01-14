@@ -10,6 +10,7 @@ import UIKit
 import Moya
 import Moya_SwiftyJSONMapper
 import SwiftyJSON
+import FirebaseAuth
 
 class GuardManager {
     static let sharedInstance = GuardManager()
@@ -24,6 +25,16 @@ class GuardManager {
                 
             case let .failure(_):
                 completion(nil)
+            }
+        }
+    }
+    
+    func addRaspberryToDatabase(serial: String) {
+        let provider = MoyaProvider<GuardService>()
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            provider.request(.addRaspberry(token: "James", raspSerial: "Potter")) { result in
+                print(result)
             }
         }
     }

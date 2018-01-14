@@ -30,11 +30,14 @@ class SensorSectionView: UIView, SectionViewDisplayer {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        prepareProgressBars()
     }
     
     override func removeFromSuperview() {
         super.removeFromSuperview()
         FirebaseManager.sharedInstance.stopListenForSensorUpdates(raspSerial: raspSerial)
+        self.leftView.removeFromSuperview()
+        self.rightView.removeFromSuperview()
     }
     
     func prepareProgressBars() {
@@ -67,10 +70,11 @@ class SensorSectionView: UIView, SectionViewDisplayer {
         progressBorderedBarView2.trailingAnchor.constraint(equalTo: self.rightView.trailingAnchor, constant: -20).isActive = true
         progressBorderedBarView2.leadingAnchor.constraint(equalTo: self.rightView.leadingAnchor).isActive = true
         
+        self.progressBorderedBarView.setProgress(0, animated: true)
+        self.progressBorderedBarView2.setProgress(0, animated: true)
     }
     
     func adjustSectionView(withSectionName section: String!) {
-        prepareProgressBars()
         
         self.titleLabel.text = "Sensors Status from \(section!) "
         //self.place = section!
@@ -79,7 +83,7 @@ class SensorSectionView: UIView, SectionViewDisplayer {
             }.map { (key, value) -> String in
                 return key }.first!
         
-        FirebaseManager.sharedInstance.listenForSensorUpdates(raspSerial: raspSerial) { sensors in
+        FirebaseManager.sharedInstance.listenForSensorUpdates(raspSerial: raspSerial) { [unowned self] sensors in
             self.sensor1NameLabel.text = sensors[0].name
             self.sensor2NameLabel.text = sensors[2].name
             self.sensor3NameLabel.text = sensors[1].name
@@ -88,10 +92,10 @@ class SensorSectionView: UIView, SectionViewDisplayer {
             self.progressBorderedBarView.primaryColor = UIColor(hue: CGFloat(0.33 - (sensors[0].value * 0.33)), saturation: 1, brightness: 1, alpha: 1)
             self.progressBorderedBarView2.primaryColor = UIColor(hue: CGFloat(0.33 - (sensors[2].value * 0.33)), saturation: 1, brightness: 1, alpha: 1)
             
-            
-            
             self.progressBorderedBarView.setProgress(CGFloat(sensors[0].value), animated: true)
             self.progressBorderedBarView2.setProgress(CGFloat(sensors[2].value), animated: true)
+            
+            
             self.sensor3Label.text = sensors[1].value > 0 ? "HIGH VALUE!" : "OK"
             self.sensor3Label.textColor = sensors[1].value > 0 ? .red : .green
             self.sensor4Label.text = "\(sensors[3].value!)"
