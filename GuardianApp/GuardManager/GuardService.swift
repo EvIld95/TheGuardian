@@ -15,6 +15,7 @@ enum GuardService {
     case addRaspberry(token: String, raspSerial: String)
     case getRaspberry(token: String, email: String)
     case assign(token: String, raspSerial: String, email: String)
+    case updateFCMToken(token: String, fcmToken: String, email: String, deviceId: String)
 }
 
 extension GuardService: TargetType {
@@ -29,6 +30,8 @@ extension GuardService: TargetType {
             return "/devices"
         case .assign(_, _, _):
             return "/devices/assing"
+        case .updateFCMToken(_, _, _, _):
+            return "/fcmTokenUpdate"
         }
     }
     var method: Moya.Method {
@@ -40,6 +43,8 @@ extension GuardService: TargetType {
         case .getRaspberry:
             return .post
         case .assign:
+            return .post
+        case .updateFCMToken:
             return .post
         }
         
@@ -54,6 +59,8 @@ extension GuardService: TargetType {
             return .requestParameters(parameters: ["token": token, "owner": email], encoding: JSONEncoding.default)
         case .assign(let token ,let raspSerial, let email):
             return .requestParameters(parameters: ["token": token, "serial": raspSerial, "owner": email], encoding: JSONEncoding.default)
+        case .updateFCMToken(let token ,let fcmToken, let email, let deviceId):
+            return .requestParameters(parameters: ["fcmToken": fcmToken, "email": email, "deviceId": deviceId], encoding: JSONEncoding.default)
         }
     }
     var sampleData: Data {
@@ -66,6 +73,8 @@ extension GuardService: TargetType {
             return "{\"token\": \(token), \"owner\": \"\(email)\"}".utf8Encoded
         case .assign(let token, let raspSerial, let email):
             return "{\"token\": \(token), \"owner\": \"\(email), \"serial\": \"\(raspSerial)\"}".utf8Encoded
+        case .updateFCMToken(let token ,let fcmToken, let email, let deviceId):
+            return "{\"fcmToken\": \(fcmToken), \"email\": \"\(email), \"deviceId\": \"\(deviceId)\"}".utf8Encoded
         }
         
     }

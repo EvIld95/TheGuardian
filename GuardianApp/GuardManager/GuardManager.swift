@@ -11,6 +11,7 @@ import Moya
 import Moya_SwiftyJSONMapper
 import SwiftyJSON
 import FirebaseAuth
+import FirebaseMessaging
 
 class GuardManager {
     static let sharedInstance = GuardManager()
@@ -85,6 +86,25 @@ class GuardManager {
                     
                 case let .failure(_):
                     completion(nil)
+                }
+            }
+        }
+    }
+    
+    func updateFCMToken(completion: @escaping () -> ()) {
+        let provider = MoyaProvider<GuardService>()
+        let currentUser = Auth.auth().currentUser
+        let email = Auth.auth().currentUser!.email
+        let deviceId = UIDevice.current.identifierForVendor!.uuidString
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            guard error == nil else { return }
+            provider.request(.updateFCMToken(token: idToken!, fcmToken: Messaging.messaging().fcmToken!, email: email!, deviceId: deviceId)) { result in
+                switch result {
+                case let .success:
+                    completion()
+                    
+                case let .failure:
+                    print("ERROR")
                 }
             }
         }

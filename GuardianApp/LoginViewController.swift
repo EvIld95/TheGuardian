@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.emailAddressTextField.text = "test.test@gmail.com"
+        self.emailAddressTextField.text = "pablo.szudrowicz@gmail.com"
         self.passwordTextField.text = "qwerty"
         
         setupRx()

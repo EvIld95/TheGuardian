@@ -63,7 +63,7 @@ class ViewController: UIViewController {
             self.addFirebaseListener()
         }
         
-        
+        GuardManager.sharedInstance.updateFCMToken(){print("Token updated")}
         
         
 //        for place in serialToPlaceDict.keys {

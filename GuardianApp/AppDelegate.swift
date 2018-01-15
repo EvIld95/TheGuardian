@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshToken(notification:)), name: NSNotification.Name.InstanceIDTokenRefresh, object: nil)
         
         UINavigationBar.appearance().barTintColor = UIColor.orange
+        //print("FCMTOKEN: ", Messaging.messaging().fcmToken!)
+        
         return true
     }
 
@@ -56,8 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @objc func refreshToken(notification: NSNotification) {
         let refreshToken = InstanceID.instanceID().token()!
         print("*** \(refreshToken) ***")
-        let refreshToken2 = InstanceID.instanceID().token()!
-        print("*** \(refreshToken2) ***")
         FBHandler()
     }
     
@@ -66,11 +66,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        print("Received: \(userInfo)")
         let value = userInfo["aps"]
         if let dict = value as? Dictionary<String,String> {
             //print("Remote notification \(dict["alert"]!)")
             receivedNotification.value = dict["alert"]!
         }
+        else if let dict = userInfo["aps"] as? Dictionary<String, Dictionary<String, String>> {
+            if let innerDict = dict["alert"] {
+                receivedNotification.value = innerDict["title"]!
+            }
+        }
+        
     }
 
 }
