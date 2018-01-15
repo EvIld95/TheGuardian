@@ -27,7 +27,7 @@ extension GuardService: TargetType {
         case .addRaspberry(_, _):
             return "/devices/add"
         case .getRaspberry(_, _):
-            return "/devices"
+            return "/devices/get"
         case .assign(_, _, _):
             return "/devices/assing"
         case .updateFCMToken(_, _, _, _):
