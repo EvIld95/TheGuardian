@@ -16,7 +16,7 @@ class FirebaseManager {
     
     var handlerSensorUpdates: UInt!
     var serialToPlaceDict : Dictionary<String, String>?
-    var previousValuesOfRasp = [String: Double]()
+    var previousValuesOfSensors = [String: Double]()
     var handlersOfAllRaspsDict = [String: UInt]()
     
     func addNewSensor(raspSerial: String, name: String!, place: String!) {
@@ -68,12 +68,12 @@ class FirebaseManager {
                         sensor.name = snapshot.key
                         sensor.value = dict["value"]! as! Double
                         sensor.place = name
-                        if let pv = self.previousValuesOfRasp[sensor.raspSerial] {
+                        if let pv = self.previousValuesOfSensors[sensor.name] {
                             if sensor.value! - pv > 0 {
                                 completion(sensor)
                             }
                         }
-                        self.previousValuesOfRasp[sensor.raspSerial] = sensor.value
+                        self.previousValuesOfSensors[sensor.name] = sensor.value
                     }
                 })
             }

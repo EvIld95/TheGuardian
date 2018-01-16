@@ -109,6 +109,17 @@ class ViewController: UIViewController {
         
         //addLine()
         
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(touchedView))
+        self.view.addGestureRecognizer(gesture)
+        
+    }
+    
+    func hideKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    @objc func touchedView() {
+        hideKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -338,7 +349,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! GuardianCollectionViewCell
-        //guard indexPath.row != guardianPlaces.count else { return }
+
         guard lastSelectedIndexPath!.item != indexPath.item || indexPath.item == serialToPlaceDict.value.count else { return }
         
         if(indexPath.row == serialToPlaceDict.value.count) {
@@ -351,7 +362,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             alertController.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 GuardManager.sharedInstance.addRaspberryToDatabase(serial: alertController.textFields![0].text!) {
-                    GuardManager.sharedInstance.assignRaspberryToUser(serial: alertController.textFields![0].text!) {
+                    //GuardManager.sharedInstance.assignRaspberryToUser(serial: alertController.textFields![0].text!) {
                         GuardManager.sharedInstance.getMyRaspberries { (response) in
                             guard let rasp = response as? RaspberriesModel else { return }
                             
@@ -360,7 +371,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
                             self.collectionView.reloadData()
                             self.addFirebaseListener()
                         }
-                    }
+                    //}
                 }
                 
             }))

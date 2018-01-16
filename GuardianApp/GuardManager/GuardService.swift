@@ -12,10 +12,11 @@ import Moya
 
 enum GuardService {
     case cameraAddress(token: String)
-    case addRaspberry(token: String, raspSerial: String)
+    case addRaspberry(token: String, raspSerial: String, email: String)
     case getRaspberry(token: String, email: String)
     case assign(token: String, raspSerial: String, email: String)
     case updateFCMToken(token: String, fcmToken: String, email: String, deviceId: String)
+    case changeGuardName(token: String, raspSerial: String, name: String)
 }
 
 extension GuardService: TargetType {
@@ -24,7 +25,7 @@ extension GuardService: TargetType {
         switch self {
         case .cameraAddress(_):
             return "/camera_address"
-        case .addRaspberry(_, _):
+        case .addRaspberry(_, _, _):
             return "/devices/add"
         case .getRaspberry(_, _):
             return "/devices/get"
@@ -32,6 +33,8 @@ extension GuardService: TargetType {
             return "/devices/assing"
         case .updateFCMToken(_, _, _, _):
             return "/fcmTokenUpdate"
+        case .changeGuardName(_,_,_):
+            return "/devices/changeRaspName"
         }
     }
     var method: Moya.Method {
@@ -46,6 +49,8 @@ extension GuardService: TargetType {
             return .post
         case .updateFCMToken:
             return .post
+        case .changeGuardName:
+            return .post
         }
         
     }
@@ -53,28 +58,32 @@ extension GuardService: TargetType {
         switch self {
         case .cameraAddress(let token):
             return .requestParameters(parameters: ["token": token], encoding: JSONEncoding.default)
-        case .addRaspberry(let token ,let raspSerial):
-            return .requestParameters(parameters: ["token": token, "serial": raspSerial], encoding: JSONEncoding.default)
+        case .addRaspberry(let token ,let raspSerial, let email):
+            return .requestParameters(parameters: ["token": token, "serial": raspSerial, "owner": email], encoding: JSONEncoding.default)
         case .getRaspberry(let token ,let email):
             return .requestParameters(parameters: ["token": token, "owner": email], encoding: JSONEncoding.default)
         case .assign(let token ,let raspSerial, let email):
             return .requestParameters(parameters: ["token": token, "serial": raspSerial, "owner": email], encoding: JSONEncoding.default)
         case .updateFCMToken(let token ,let fcmToken, let email, let deviceId):
             return .requestParameters(parameters: ["fcmToken": fcmToken, "email": email, "deviceId": deviceId], encoding: JSONEncoding.default)
+        case .changeGuardName(let token ,let raspSerial, let name):
+            return .requestParameters(parameters: ["token": token, "serial": raspSerial, "name": name], encoding: JSONEncoding.default)
         }
     }
     var sampleData: Data {
         switch self {
         case .cameraAddress:
             return "http://52.236.165.15/hls/test.m3u8".utf8Encoded
-        case .addRaspberry(let token, let raspSerial):
-            return "{\"token\": \(token), \"serial\": \"\(raspSerial)\"}".utf8Encoded
+        case .addRaspberry(let token, let raspSerial, let email):
+            return "{\"token\": \(token), \"serial\": \"\(raspSerial), \"owner\": \(email)\"}".utf8Encoded
         case .getRaspberry(let token, let email):
             return "{\"token\": \(token), \"owner\": \"\(email)\"}".utf8Encoded
         case .assign(let token, let raspSerial, let email):
             return "{\"token\": \(token), \"owner\": \"\(email), \"serial\": \"\(raspSerial)\"}".utf8Encoded
         case .updateFCMToken(let token ,let fcmToken, let email, let deviceId):
             return "{\"fcmToken\": \(fcmToken), \"email\": \"\(email), \"deviceId\": \"\(deviceId)\"}".utf8Encoded
+        case .changeGuardName(let token, let raspSerial, let name):
+            return "{\"token\": \(token), \"name\": \"\(name), \"serial\": \"\(raspSerial)\"}".utf8Encoded
         }
         
     }

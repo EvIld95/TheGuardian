@@ -16,6 +16,7 @@ class StatusSectionView: UIView, SectionViewDisplayer {
     @IBOutlet weak var labelPlace: UILabel!
     @IBOutlet weak var labelStatus: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var changeNameTextField: UITextField!
     
     weak var owner: ViewController!
     var raspSerial: String!
@@ -64,6 +65,18 @@ class StatusSectionView: UIView, SectionViewDisplayer {
         }
     }
     
-    
+    @IBAction func changeNameButtonTapped(button: UIButton!) {
+        guard changeNameTextField.text?.isEmpty == false else { return }
+        
+        GuardManager.sharedInstance.changeGuardName(serial: self.raspSerial, name: changeNameTextField.text!) {
+            let alertController = UIAlertController(title: "Success", message: "Guard name changed", preferredStyle: .alert)
+            let actionOK = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(actionOK)
+            let parentView = self.superview?.parentViewController
+            if let parentView = parentView {
+                parentView.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
 
 }

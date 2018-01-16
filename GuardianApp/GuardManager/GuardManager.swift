@@ -41,8 +41,9 @@ class GuardManager {
     func addRaspberryToDatabase(serial: String, completion: @escaping () -> ()) {
         let provider = MoyaProvider<GuardService>()
         let currentUser = Auth.auth().currentUser
+        let email = Auth.auth().currentUser!.email
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-            provider.request(.addRaspberry(token: idToken!, raspSerial: serial)) { result in
+            provider.request(.addRaspberry(token: idToken!, raspSerial: serial, email: email!)) { result in
                 switch result {
                 case let .success:
                     completion()
@@ -99,6 +100,23 @@ class GuardManager {
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
             guard error == nil else { return }
             provider.request(.updateFCMToken(token: idToken!, fcmToken: Messaging.messaging().fcmToken!, email: email!, deviceId: deviceId)) { result in
+                switch result {
+                case let .success:
+                    completion()
+                    
+                case let .failure:
+                    print("ERROR")
+                }
+            }
+        }
+    }
+    
+    func changeGuardName(serial: String,name: String, completion: @escaping () -> ()) {
+        let provider = MoyaProvider<GuardService>()
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            guard error == nil else { return }
+            provider.request(.changeGuardName(token: idToken!, raspSerial: serial, name: name)) { result in
                 switch result {
                 case let .success:
                     completion()
