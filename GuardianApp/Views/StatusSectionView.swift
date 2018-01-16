@@ -69,10 +69,28 @@ class StatusSectionView: UIView, SectionViewDisplayer {
         guard changeNameTextField.text?.isEmpty == false else { return }
         
         GuardManager.sharedInstance.changeGuardName(serial: self.raspSerial, name: changeNameTextField.text!) {
+            
+            let parentView = self.superview?.parentViewController as? ViewController
+            
+            GuardManager.sharedInstance.getMyRaspberries { (response) in
+                guard let rasp = response as? RaspberriesModel else { return }
+                guard let parentView = parentView else { return }
+                
+                parentView.updateRaspberries(rasp: rasp)
+                //parentView.setupCustomView(sv: .WarningView)
+                //parentView.buttonSelectedSetup(button: parentView.warningButton)
+                //parentView.lastTouchedButton = parentView.warningButton
+                parentView.collectionView.reloadData()
+                FirebaseManager.sharedInstance.addSerialToPlaceDict(dict: parentView.serialToPlaceDict.value)
+                self.setNeedsLayout()
+                self.layoutIfNeeded()
+                
+            }
+            
             let alertController = UIAlertController(title: "Success", message: "Guard name changed", preferredStyle: .alert)
             let actionOK = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(actionOK)
-            let parentView = self.superview?.parentViewController
+            
             if let parentView = parentView {
                 parentView.present(alertController, animated: true, completion: nil)
             }

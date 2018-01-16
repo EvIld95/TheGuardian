@@ -127,4 +127,23 @@ class GuardManager {
             }
         }
     }
+    
+    
+    func getNotifications(serial: String, completion: @escaping (ALSwiftyJSONAble?) -> ()) {
+        let provider = MoyaProvider<GuardService>()
+        let currentUser = Auth.auth().currentUser
+        currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+            guard error == nil else { return }
+            provider.request(.getNotifications(token: idToken!, raspSerial: serial)) { result in
+                switch result {
+                case let .success(moyaResponse):
+                    let data = try? moyaResponse.map(to: Notifications.self)
+                    completion(data)
+                    
+                case let .failure(_):
+                    completion(nil)
+                }
+            }
+        }
+    }
 }

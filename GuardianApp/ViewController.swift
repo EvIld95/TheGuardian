@@ -110,7 +110,8 @@ class ViewController: UIViewController {
         //addLine()
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(touchedView))
-        self.view.addGestureRecognizer(gesture)
+        gesture.cancelsTouchesInView = true
+       // self.view.addGestureRecognizer(gesture)
         
     }
     

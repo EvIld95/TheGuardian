@@ -39,6 +39,7 @@
 		F771E4031FFF9E670034D763 /* SensorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4021FFF9E670034D763 /* SensorModel.swift */; };
 		F771E4051FFFEF9A0034D763 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4041FFFEF9A0034D763 /* StreamManager.swift */; };
 		F771E407200BADD10034D763 /* RaspberriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E406200BADD10034D763 /* RaspberriesModel.swift */; };
+		F771E409200EAC280034D763 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E408200EAC280034D763 /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		F771E4021FFF9E670034D763 /* SensorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorModel.swift; sourceTree = "<group>"; };
 		F771E4041FFFEF9A0034D763 /* StreamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
 		F771E406200BADD10034D763 /* RaspberriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaspberriesModel.swift; sourceTree = "<group>"; };
+		F771E408200EAC280034D763 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 			children = (
 				F771E3EF1FF7EB770034D763 /* CameraResponseModel.swift */,
 				F771E406200BADD10034D763 /* RaspberriesModel.swift */,
+				F771E408200EAC280034D763 /* Notifications.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				F71B747D1FC7790000BE0567 /* GuardianMainButton.swift in Sources */,
 				F71B746C1FC7562800BE0567 /* ViewController.swift in Sources */,
 				F71B74851FC8CC1900BE0567 /* GuardianCollectionViewCell.swift in Sources */,
+				F771E409200EAC280034D763 /* Notifications.swift in Sources */,
 				F771E4051FFFEF9A0034D763 /* StreamManager.swift in Sources */,
 				F71B74941FCCA68700BE0567 /* SectionViewProtocol.swift in Sources */,
 				F71B74801FC77C3000BE0567 /* BackgroundView.swift in Sources */,

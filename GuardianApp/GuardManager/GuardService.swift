@@ -17,6 +17,7 @@ enum GuardService {
     case assign(token: String, raspSerial: String, email: String)
     case updateFCMToken(token: String, fcmToken: String, email: String, deviceId: String)
     case changeGuardName(token: String, raspSerial: String, name: String)
+    case getNotifications(token: String, raspSerial: String)
 }
 
 extension GuardService: TargetType {
@@ -35,6 +36,8 @@ extension GuardService: TargetType {
             return "/fcmTokenUpdate"
         case .changeGuardName(_,_,_):
             return "/devices/changeRaspName"
+        case .getNotifications(_, _):
+            return "/devices/notifications"
         }
     }
     var method: Moya.Method {
@@ -50,6 +53,8 @@ extension GuardService: TargetType {
         case .updateFCMToken:
             return .post
         case .changeGuardName:
+            return .post
+        case .getNotifications:
             return .post
         }
         
@@ -68,6 +73,8 @@ extension GuardService: TargetType {
             return .requestParameters(parameters: ["fcmToken": fcmToken, "email": email, "deviceId": deviceId], encoding: JSONEncoding.default)
         case .changeGuardName(let token ,let raspSerial, let name):
             return .requestParameters(parameters: ["token": token, "serial": raspSerial, "name": name], encoding: JSONEncoding.default)
+        case .getNotifications(let token ,let raspSerial):
+            return .requestParameters(parameters: ["token": token, "serial": raspSerial], encoding: JSONEncoding.default)
         }
     }
     var sampleData: Data {
@@ -84,6 +91,8 @@ extension GuardService: TargetType {
             return "{\"fcmToken\": \(fcmToken), \"email\": \"\(email), \"deviceId\": \"\(deviceId)\"}".utf8Encoded
         case .changeGuardName(let token, let raspSerial, let name):
             return "{\"token\": \(token), \"name\": \"\(name), \"serial\": \"\(raspSerial)\"}".utf8Encoded
+        case .getNotifications(let token ,let raspSerial):
+            return "{\"token\": \(token), \"serial\": \"\(raspSerial)\"}".utf8Encoded
         }
         
     }

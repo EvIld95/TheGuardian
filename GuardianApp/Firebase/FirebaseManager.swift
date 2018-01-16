@@ -37,7 +37,7 @@ class FirebaseManager {
             sensors.removeAll()
             
             if let dict = snapshot.value as? [String: AnyObject] {
-                for dictKey in dict.keys {
+                for dictKey in dict.keys where dictKey != "is_armed" {
                     let sensor = SensorModel()
                     sensor.raspSerial = raspSerial
                     sensor.name = dictKey
