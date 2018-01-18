@@ -17,6 +17,7 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
     var historyOfNotifications = [Notification]()
     var lastSelectedIndexPath: IndexPath?
     var raspSerial: String!
+    var place : String!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,13 +34,15 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     func adjustSectionView(withSectionName section: String!) {
         self.label.text = "Guard [\(section!)] history:"
-        
+        self.place = section!
         self.raspSerial = FirebaseManager.sharedInstance.getRaspSerialFromPlace(place: section!)
         GuardManager.sharedInstance.getNotifications(serial: self.raspSerial) { (notifications) in
             guard let notifications = notifications as? Notifications else { return }
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
-            for notification in notifications.array {
+            for notification in notifications.array.sorted(by: { (n1, n2) -> Bool in
+                n1.date > n2.date
+            }) {
                 self.historyOfNotifications.append(notification)
             }
             self.collectionView.reloadData()
@@ -93,7 +96,15 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     @IBAction func buttonTapped(button: UIButton!) {
         let i = lastSelectedIndexPath!.item
-        let alertController = UIAlertController(title: "Notification from \(historyOfNotifications[i].type)", message: historyOfNotifications[i].message, preferredStyle: .alert)
+        
+//        if(historyOfNotifications[i].type == "COSensor") {
+//            title = "Detected high value of CO"
+//        } else if(historyOfNotifications[i].type == "LPGSensor") {
+//            title = "Detected "
+//        }
+        
+        
+        let alertController = UIAlertController(title: "Notification from \(self.place!) on \(historyOfNotifications[i].date)", message: historyOfNotifications[i].message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(action)
         if let parent = self.parentViewController {

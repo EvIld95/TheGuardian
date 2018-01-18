@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var warningButton: UIButton!
     var lastSelectedIndexPath: IndexPath?
     var loggedInUserMail: String!
-    
+    var firstRun = false
     let disposeBag = DisposeBag()
     
     
@@ -57,10 +57,12 @@ class ViewController: UIViewController {
             guard let rasp = response as? RaspberriesModel else { return }
             
             self.updateRaspberries(rasp: rasp)
-            self.setupCustomView(sv: .WarningView)
             MBProgressHUD.hide(for: self.view, animated: true)
             self.collectionView.reloadData()
+            self.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
+            self.lastSelectedIndexPath =  IndexPath(item: 0, section: 0)
             self.addFirebaseListener()
+            self.setupCustomView(sv: .WarningView)
         }
         
         GuardManager.sharedInstance.updateFCMToken(){print("Token updated")}
@@ -129,15 +131,15 @@ class ViewController: UIViewController {
         print("ViewWillApperar")
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if(firstLayoutSubview) {
-            self.collectionView.reloadData()
-            collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
-            lastSelectedIndexPath =  IndexPath(item: 0, section: 0)
-        }
-        firstLayoutSubview = false
-    }
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        if(firstLayoutSubview) {
+//            //self.collectionView.reloadData()
+//            //collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
+//            lastSelectedIndexPath =  IndexPath(item: 0, section: 0)
+//        }
+//        firstLayoutSubview = false
+//    }
     
     func updateRaspberries(rasp: RaspberriesModel) {
         for (raspSerial, name) in rasp.raspberries {
@@ -340,7 +342,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             cell.label.textColor = .black
         }
         
-        if(cell.isSelected) {
+        if(cell.isSelected ) {
             cell.backgroundColor = cell.selectionColor
         } else {
             cell.backgroundColor = cell.defaultColor
