@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0565B85275EF7A354FF18563 /* Pods_GuardianApp_GuardianAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BCAEDB31F60ADF2FC766F88 /* Pods_GuardianApp_GuardianAppTests.framework */; };
 		4D88FD46AF0E7AB925C9332D /* Pods_GuardianApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF5F32CDE4DDE00F1B3A8D1 /* Pods_GuardianApp.framework */; };
 		F71B746A1FC7562800BE0567 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B74691FC7562800BE0567 /* AppDelegate.swift */; };
 		F71B746C1FC7562800BE0567 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71B746B1FC7562800BE0567 /* ViewController.swift */; };
@@ -40,12 +41,26 @@
 		F771E4051FFFEF9A0034D763 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E4041FFFEF9A0034D763 /* StreamManager.swift */; };
 		F771E407200BADD10034D763 /* RaspberriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E406200BADD10034D763 /* RaspberriesModel.swift */; };
 		F771E409200EAC280034D763 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E408200EAC280034D763 /* Notifications.swift */; };
+		F771E41120121B370034D763 /* GuardianAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F771E41020121B370034D763 /* GuardianAppTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F771E41320121B370034D763 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F71B745E1FC7562800BE0567 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F71B74651FC7562800BE0567;
+			remoteInfo = GuardianApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		25D9CBD88B2916521C8853F3 /* Pods-GuardianApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuardianApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GuardianApp/Pods-GuardianApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3043F72FAC596ED918B8AE9F /* Pods-GuardianApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuardianApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-GuardianApp/Pods-GuardianApp.release.xcconfig"; sourceTree = "<group>"; };
+		619E5ECF9C3BCFE123B8CCBC /* Pods-GuardianApp-GuardianAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuardianApp-GuardianAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GuardianApp-GuardianAppTests/Pods-GuardianApp-GuardianAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		6BCAEDB31F60ADF2FC766F88 /* Pods_GuardianApp_GuardianAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GuardianApp_GuardianAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF5F32CDE4DDE00F1B3A8D1 /* Pods_GuardianApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GuardianApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6E244A23ED7B0CE6CD325E0 /* Pods-GuardianApp-GuardianAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuardianApp-GuardianAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GuardianApp-GuardianAppTests/Pods-GuardianApp-GuardianAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F71B74661FC7562800BE0567 /* GuardianApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuardianApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F71B74691FC7562800BE0567 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F71B746B1FC7562800BE0567 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +96,9 @@
 		F771E4041FFFEF9A0034D763 /* StreamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
 		F771E406200BADD10034D763 /* RaspberriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaspberriesModel.swift; sourceTree = "<group>"; };
 		F771E408200EAC280034D763 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		F771E40E20121B360034D763 /* GuardianAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GuardianAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F771E41020121B370034D763 /* GuardianAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianAppTests.swift; sourceTree = "<group>"; };
+		F771E41220121B370034D763 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +110,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F771E40B20121B360034D763 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0565B85275EF7A354FF18563 /* Pods_GuardianApp_GuardianAppTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -100,6 +126,8 @@
 			children = (
 				25D9CBD88B2916521C8853F3 /* Pods-GuardianApp.debug.xcconfig */,
 				3043F72FAC596ED918B8AE9F /* Pods-GuardianApp.release.xcconfig */,
+				F6E244A23ED7B0CE6CD325E0 /* Pods-GuardianApp-GuardianAppTests.debug.xcconfig */,
+				619E5ECF9C3BCFE123B8CCBC /* Pods-GuardianApp-GuardianAppTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -108,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				6DF5F32CDE4DDE00F1B3A8D1 /* Pods_GuardianApp.framework */,
+				6BCAEDB31F60ADF2FC766F88 /* Pods_GuardianApp_GuardianAppTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				F71B74681FC7562800BE0567 /* GuardianApp */,
+				F771E40F20121B370034D763 /* GuardianAppTests */,
 				F71B74671FC7562800BE0567 /* Products */,
 				3D34B02E9F33EF74F6FF8A6A /* Pods */,
 				E6F1F409F87F744C7F51A84A /* Frameworks */,
@@ -126,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				F71B74661FC7562800BE0567 /* GuardianApp.app */,
+				F771E40E20121B360034D763 /* GuardianAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,6 +266,15 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
+		F771E40F20121B370034D763 /* GuardianAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				F771E41020121B370034D763 /* GuardianAppTests.swift */,
+				F771E41220121B370034D763 /* Info.plist */,
+			);
+			path = GuardianAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,13 +298,34 @@
 			productReference = F71B74661FC7562800BE0567 /* GuardianApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F771E40D20121B360034D763 /* GuardianAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F771E41720121B370034D763 /* Build configuration list for PBXNativeTarget "GuardianAppTests" */;
+			buildPhases = (
+				70B257E4BF8169E878FC6AFF /* [CP] Check Pods Manifest.lock */,
+				F771E40A20121B360034D763 /* Sources */,
+				F771E40B20121B360034D763 /* Frameworks */,
+				F771E40C20121B360034D763 /* Resources */,
+				711662CC84377BAFE40D6B4B /* [CP] Embed Pods Frameworks */,
+				40E8AACE1C51437D60AC13A7 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F771E41420121B370034D763 /* PBXTargetDependency */,
+			);
+			name = GuardianAppTests;
+			productName = GuardianAppTests;
+			productReference = F771E40E20121B360034D763 /* GuardianAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		F71B745E1FC7562800BE0567 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Paweł Szudrowicz";
 				TargetAttributes = {
@@ -276,6 +337,11 @@
 								enabled = 1;
 							};
 						};
+					};
+					F771E40D20121B360034D763 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F71B74651FC7562800BE0567;
 					};
 				};
 			};
@@ -293,6 +359,7 @@
 			projectRoot = "";
 			targets = (
 				F71B74651FC7562800BE0567 /* GuardianApp */,
+				F771E40D20121B360034D763 /* GuardianAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -314,9 +381,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F771E40C20121B360034D763 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		40E8AACE1C51437D60AC13A7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GuardianApp-GuardianAppTests/Pods-GuardianApp-GuardianAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4A8BF7EC2BFD6BD56A929D56 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -330,6 +419,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GuardianApp/Pods-GuardianApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70B257E4BF8169E878FC6AFF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GuardianApp-GuardianAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		711662CC84377BAFE40D6B4B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GuardianApp-GuardianAppTests/Pods-GuardianApp-GuardianAppTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/M13ProgressSuite/M13ProgressSuite.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya-SwiftyJSONMapper/Moya_SwiftyJSONMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13ProgressSuite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya_SwiftyJSONMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GuardianApp-GuardianAppTests/Pods-GuardianApp-GuardianAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		98C2F2DAD6E18BDB63C9428B /* [CP] Check Pods Manifest.lock */ = {
@@ -429,7 +582,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F771E40A20121B360034D763 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F771E41120121B370034D763 /* GuardianAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F771E41420121B370034D763 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F71B74651FC7562800BE0567 /* GuardianApp */;
+			targetProxy = F771E41320121B370034D763 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F71B746D1FC7562800BE0567 /* Main.storyboard */ = {
@@ -592,6 +761,42 @@
 			};
 			name = Release;
 		};
+		F771E41520121B370034D763 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6E244A23ED7B0CE6CD325E0 /* Pods-GuardianApp-GuardianAppTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 276JFTHA68;
+				INFOPLIST_FILE = GuardianAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawelszudrowicz.guardapp.GuardianAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GuardianApp.app/GuardianApp";
+			};
+			name = Debug;
+		};
+		F771E41620121B370034D763 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 619E5ECF9C3BCFE123B8CCBC /* Pods-GuardianApp-GuardianAppTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 276JFTHA68;
+				INFOPLIST_FILE = GuardianAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pawelszudrowicz.guardapp.GuardianAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GuardianApp.app/GuardianApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -609,6 +814,15 @@
 			buildConfigurations = (
 				F71B74791FC7562800BE0567 /* Debug */,
 				F71B747A1FC7562800BE0567 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F771E41720121B370034D763 /* Build configuration list for PBXNativeTarget "GuardianAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F771E41520121B370034D763 /* Debug */,
+				F771E41620121B370034D763 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

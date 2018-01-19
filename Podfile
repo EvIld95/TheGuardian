@@ -17,4 +17,10 @@ target 'GuardianApp' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'M13ProgressSuite'
+
+  target 'GuardianAppTests' do
+     inherit! :complete
+  end
+
 end
+
