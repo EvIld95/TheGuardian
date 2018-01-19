@@ -67,26 +67,6 @@ class ViewController: UIViewController {
         
         GuardManager.sharedInstance.updateFCMToken(){print("Token updated")}
         
-    
-        
-       // GuardManager.sharedInstance.fetchCameraAddress { (response) in
-       //     guard let resp = response as? CameraResponseModel else { return }
-       //     print(resp.cameraAddress!)
-//            DispatchQueue.main.async {
-//                let videoURL = URL(string: "http://52.236.165.15:80/hls/00000000fb021b9a.m3u8") //resp.cameraAddress!
-//                let player = AVPlayer(url: videoURL!)
-//                let playerLayer = AVPlayerLayer(player: player)
-//                playerLayer.frame = self.playerView.bounds
-//                self.playerView.layer.addSublayer(playerLayer)
-//                player.play()
-//            }
-        
-        //}
-        
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1 ) {
-//            self.setupCustomView(sv: .WarningView)
-//        }
-        
         setupNavBar()
         warningButton.imageView?.contentMode = .scaleAspectFit
         buttonSelectedSetup(button: warningButton)
