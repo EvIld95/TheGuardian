@@ -13,9 +13,14 @@ import Moya_SwiftyJSONMapper
 
 class GuardianAppTests: XCTestCase {
     
+    var provider: MoyaProvider<GuardService>!
+    
+    override func setUp() {
+        super.setUp()
+        provider = MoyaProvider<GuardService>(stubClosure: MoyaProvider.immediatelyStub)
+    }
+    
     func testCameraRequest() {
-        let provider = MoyaProvider<GuardService>(stubClosure: MoyaProvider.immediatelyStub)
-        
         provider.request(.cameraAddress(token: "debug")) { result in
             switch result {
             case let .success(moyaResponse):
@@ -34,8 +39,6 @@ class GuardianAppTests: XCTestCase {
     }
     
     func testGetRaspberryRequest() {
-        let provider = MoyaProvider<GuardService>(stubClosure: MoyaProvider.immediatelyStub)
-        
         provider.request(.getRaspberry(token: "debug", email: "pablo.szudrowicz@gmail.com")) { result in
             switch result {
             case let .success(moyaResponse):
@@ -55,8 +58,6 @@ class GuardianAppTests: XCTestCase {
     }
     
     func testGetNotificationRequest() {
-        let provider = MoyaProvider<GuardService>(stubClosure: MoyaProvider.immediatelyStub)
-        
         provider.request(.getNotifications(token: "debug", raspSerial: "testSerial")) { result in
             switch result {
             case let .success(moyaResponse):
@@ -80,28 +81,5 @@ class GuardianAppTests: XCTestCase {
     }
     
     
-    
-    
-//    override func setUp() {
-//        super.setUp()
-//        // Put setup code here. This method is called before the invocation of each test method in the class.
-//    }
-//
-//    override func tearDown() {
-//        // Put teardown code here. This method is called after the invocation of each test method in the class.
-//        super.tearDown()
-//    }
-//
-//    func testExample() {
-//        // This is an example of a functional test case.
-//        // Use XCTAssert and related functions to verify your tests produce the correct results.
-//    }
-//
-//    func testPerformanceExample() {
-//        // This is an example of a performance test case.
-//        self.measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
-//
+
 }
