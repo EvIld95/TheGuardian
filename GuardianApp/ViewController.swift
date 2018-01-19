@@ -40,15 +40,9 @@ class ViewController: UIViewController {
     
     var serialToPlaceDict = Variable<Dictionary<String, String>>(Dictionary<String, String>())
     var sortedKeys = [String]()
-    //var guardianPlaces = ["Salon", "Hall", "Garage", "Bedroom", "Kitchen", "Outside", "Child Room", "Dining Room", "Tarrace"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        for (i, place) in guardianPlaces.enumerated() {
-//            serialToPlaceDict["rasp\(i)Serial"] = place
-//        }
-       
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
@@ -63,33 +57,31 @@ class ViewController: UIViewController {
             self.lastSelectedIndexPath =  IndexPath(item: 0, section: 0)
             self.addFirebaseListener()
             self.setupCustomView(sv: .WarningView)
+            StreamManager.sharedInstance.playStreamOn(view: self.playerView)
+            if let firstKey = self.sortedKeys.first {
+                StreamManager.sharedInstance.streamVideoFrom(urlString: "http://52.236.165.15:80/hls/\(firstKey).m3u8")
+            }
+            
+            
         }
         
         GuardManager.sharedInstance.updateFCMToken(){print("Token updated")}
         
+    
         
-//        for place in serialToPlaceDict.keys {
-//            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "TempSensor", place: place)
-//            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "COSensor", place: place)
-//            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "LPGSensor", place: place)
-//            FirebaseManager.sharedInstance.addNewSensor(raspSerial: place, name: "FlameSensor", place: place)
-//        }
+       // GuardManager.sharedInstance.fetchCameraAddress { (response) in
+       //     guard let resp = response as? CameraResponseModel else { return }
+       //     print(resp.cameraAddress!)
+//            DispatchQueue.main.async {
+//                let videoURL = URL(string: "http://52.236.165.15:80/hls/00000000fb021b9a.m3u8") //resp.cameraAddress!
+//                let player = AVPlayer(url: videoURL!)
+//                let playerLayer = AVPlayerLayer(player: player)
+//                playerLayer.frame = self.playerView.bounds
+//                self.playerView.layer.addSublayer(playerLayer)
+//                player.play()
+//            }
         
-        
-        GuardManager.sharedInstance.fetchCameraAddress { (response) in
-            guard let resp = response as? CameraResponseModel else { return }
-            print(resp.cameraAddress!)
-            DispatchQueue.main.async {
-                let videoURL = URL(string: resp.cameraAddress!)
-                let player = AVPlayer(url: videoURL!)
-                let playerLayer = AVPlayerLayer(player: player)
-                playerLayer.frame = self.playerView.bounds
-                self.playerView.layer.addSublayer(playerLayer)
-                player.play()
-            }
-            //StreamManager.sharedInstance.playStreamOn(view: self.playerView)
-            //StreamManager.sharedInstance.streamVideoFrom(urlString: resp.cameraAddress!)
-        }
+        //}
         
 //        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1 ) {
 //            self.setupCustomView(sv: .WarningView)
@@ -130,16 +122,6 @@ class ViewController: UIViewController {
         
         print("ViewWillApperar")
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        if(firstLayoutSubview) {
-//            //self.collectionView.reloadData()
-//            //collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
-//            lastSelectedIndexPath =  IndexPath(item: 0, section: 0)
-//        }
-//        firstLayoutSubview = false
-//    }
     
     func updateRaspberries(rasp: RaspberriesModel) {
         for (raspSerial, name) in rasp.raspberries {
@@ -389,11 +371,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             lastVisitedPlace = cell.label.text
             let subview = self.contentView.subviews.first! as! SectionViewDisplayer
             subview.adjustSectionView(withSectionName: cell.label.text)
+            let key = sortedKeys[indexPath.row]
+            StreamManager.sharedInstance.streamVideoFrom(urlString: "http://52.236.165.15:80/hls/\(key).m3u8")
             
             collectionView.deselectItem(at: lastSelectedIndexPath!, animated: false)
-    //        if let cellLast = collectionView.cellForItem(at: lastSelectedIndexPath!) as? GuardianCollectionViewCell {
-    //            cellLast.backgroundColor = cellLast.defaultColor
-    //        }
             collectionView.reloadItems(at: [lastSelectedIndexPath!])
             lastSelectedIndexPath = indexPath
         }
