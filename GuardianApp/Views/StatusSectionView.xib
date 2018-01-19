@@ -28,16 +28,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="335" height="65.5"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xXE-y5-XJH">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="65.5"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="200" id="j7n-Wq-gR6"/>
-                                    </constraints>
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="65.5"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M1h-4I-Aln" customClass="GuardianMainButton" customModule="GuardianApp" customModuleProvider="target">
-                                    <rect key="frame" x="210" y="0.0" width="125" height="65.5"/>
+                                    <rect key="frame" x="205" y="0.0" width="130" height="65.5"/>
                                     <color key="backgroundColor" red="0.91456967590000005" green="0.068358077739999995" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" title="Change Name"/>
@@ -51,6 +48,15 @@
                                     </connections>
                                 </button>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="xXE-y5-XJH" secondAttribute="bottom" id="1HP-kW-Bxx"/>
+                                <constraint firstItem="M1h-4I-Aln" firstAttribute="top" secondItem="Yjb-mX-Pgh" secondAttribute="top" id="2Bm-8q-P8d"/>
+                                <constraint firstAttribute="bottom" secondItem="M1h-4I-Aln" secondAttribute="bottom" id="Dv0-sn-0JO"/>
+                                <constraint firstItem="xXE-y5-XJH" firstAttribute="width" secondItem="M1h-4I-Aln" secondAttribute="width" multiplier="1.5" id="TD0-WZ-iSu"/>
+                                <constraint firstItem="xXE-y5-XJH" firstAttribute="top" secondItem="Yjb-mX-Pgh" secondAttribute="top" id="VOV-CQ-egT"/>
+                                <constraint firstItem="xXE-y5-XJH" firstAttribute="leading" secondItem="Yjb-mX-Pgh" secondAttribute="leading" id="eMW-Z7-Kbx"/>
+                                <constraint firstAttribute="trailing" secondItem="M1h-4I-Aln" secondAttribute="trailing" id="rcM-ns-2ql"/>
+                            </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcQ-oE-rWj">
                             <rect key="frame" x="39.5" y="75.5" width="256" height="34.5"/>

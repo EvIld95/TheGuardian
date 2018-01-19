@@ -10,13 +10,11 @@ import UIKit
 
 class LiveStreamSectionView: UIView, SectionViewDisplayer {
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var info1Label: UILabel!
-    @IBOutlet weak var info2Label: UILabel!
     
     func adjustSectionView(withSectionName section: String!) {
         self.titleLabel.text = "Live stream from \(section!)"
-        self.info1Label.text = "Info1"
-        self.info2Label.text = "Info2"
+        let raspSerial = FirebaseManager.sharedInstance.getRaspSerialFromPlace(place: section!)
+        StreamManager.sharedInstance.streamVideoFrom(urlString: "http://52.236.165.15:80/hls/\(raspSerial).m3u8")
     }
     
 }

@@ -38,6 +38,7 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
         self.raspSerial = FirebaseManager.sharedInstance.getRaspSerialFromPlace(place: section!)
         GuardManager.sharedInstance.getNotifications(serial: self.raspSerial) { (notifications) in
             guard let notifications = notifications as? Notifications else { return }
+            self.historyOfNotifications.removeAll()
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             for notification in notifications.array.sorted(by: { (n1, n2) -> Bool in
@@ -79,9 +80,6 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
         
         if let lastSelectedIndexPath = lastSelectedIndexPath{
             collectionView.deselectItem(at: lastSelectedIndexPath, animated: false)
-            //        if let cellLast = collectionView.cellForItem(at: lastSelectedIndexPath!) as? GuardianCollectionViewCell {
-            //            cellLast.backgroundColor = cellLast.defaultColor
-            //        }
             collectionView.reloadItems(at: [lastSelectedIndexPath])
         }
         lastSelectedIndexPath = indexPath
@@ -96,13 +94,6 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     @IBAction func buttonTapped(button: UIButton!) {
         let i = lastSelectedIndexPath!.item
-        
-//        if(historyOfNotifications[i].type == "COSensor") {
-//            title = "Detected high value of CO"
-//        } else if(historyOfNotifications[i].type == "LPGSensor") {
-//            title = "Detected "
-//        }
-        
         
         let alertController = UIAlertController(title: "Notification from \(self.place!) on \(historyOfNotifications[i].date)", message: historyOfNotifications[i].message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)

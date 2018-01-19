@@ -117,12 +117,6 @@ class ViewController: UIViewController {
         hideKeyboard()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print("ViewWillApperar")
-    }
-    
     func updateRaspberries(rasp: RaspberriesModel) {
         for (raspSerial, name) in rasp.raspberries {
             self.serialToPlaceDict.value[raspSerial] = name
@@ -347,16 +341,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             alertController.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
                 MBProgressHUD.showAdded(to: self.view, animated: true)
                 GuardManager.sharedInstance.addRaspberryToDatabase(serial: alertController.textFields![0].text!) {
-                    //GuardManager.sharedInstance.assignRaspberryToUser(serial: alertController.textFields![0].text!) {
-                        GuardManager.sharedInstance.getMyRaspberries { (response) in
-                            guard let rasp = response as? RaspberriesModel else { return }
-                            
-                            self.updateRaspberries(rasp: rasp)
-                            MBProgressHUD.hide(for: self.view, animated: true)
-                            self.collectionView.reloadData()
-                            self.addFirebaseListener()
-                        }
-                    //}
+                    GuardManager.sharedInstance.getMyRaspberries { (response) in
+                        guard let rasp = response as? RaspberriesModel else { return }
+                        
+                        self.updateRaspberries(rasp: rasp)
+                        MBProgressHUD.hide(for: self.view, animated: true)
+                        self.collectionView.reloadData()
+                        self.addFirebaseListener()
+                    }
                 }
                 
             }))
