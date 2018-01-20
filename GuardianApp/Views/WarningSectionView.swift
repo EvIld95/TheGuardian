@@ -38,7 +38,7 @@ class WarningSectionView: UIView, SectionViewDisplayer {
                 }).first
                 
                 if let last = self.lastNotification {
-                    self.informationLabel.text = "Last danger in \(section): \(last.date)"
+                    self.informationLabel.text = "Last danger: \(last.date)"
                 } else {
                     self.informationLabel.text = "No Danger!"
                 }

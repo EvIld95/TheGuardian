@@ -33,7 +33,7 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
     }
     
     func adjustSectionView(withSectionName section: String!) {
-        self.label.text = "Guard [\(section!)] history:"
+        self.label.text = "Notifications history from \(section!)"
         self.place = section!
         self.raspSerial = FirebaseManager.sharedInstance.getRaspSerialFromPlace(place: section!)
         GuardManager.sharedInstance.getNotifications(serial: self.raspSerial) { (notifications) in

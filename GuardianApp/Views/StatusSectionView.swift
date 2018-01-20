@@ -25,7 +25,7 @@ class StatusSectionView: UIView, SectionViewDisplayer {
     func adjustSectionView(withSectionName section: String!) {
         
         self.raspSerial = FirebaseManager.sharedInstance.getRaspSerialFromPlace(place: section!)
-        self.labelPlace.text = "Guardian [\(section!)]:"
+        self.labelPlace.text = "Guard [\(section!)]:"
         self.place = section!
         
         
