@@ -35,8 +35,8 @@ class StreamManager {
                         print("Enter foreground")
                     } else {
                         print("Enter background")
-                        streamView.subviews.forEach({ (view) in
-                            view.removeFromSuperview()
+                        streamView.layer.sublayers?.forEach({ (layer) in
+                            layer.removeFromSuperlayer()
                         })
                     }
                 }
@@ -50,6 +50,13 @@ class StreamManager {
     
     func streamVideoFrom(urlString: String) {
         guard let streamView = self.streamView else { print("ADD STREAM VIEW"); return}
+        
+        if let _ = self.currentPlayer {
+            streamView.layer.sublayers?.forEach({ (layer) in
+                layer.removeFromSuperlayer()
+            })
+        }
+        
         DispatchQueue.main.async {
             let videoURL = URL(string: urlString)
             let player = AVPlayer(url: videoURL!)
