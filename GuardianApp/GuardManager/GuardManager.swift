@@ -34,8 +34,6 @@ class GuardManager {
                 }
             }
         }
-        
-        
     }
     
     func addRaspberryToDatabase(serial: String, completion: @escaping () -> ()) {

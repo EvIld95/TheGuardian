@@ -16,6 +16,7 @@ target 'GuardianApp' do
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   pod 'M13ProgressSuite'
 
   target 'GuardianAppTests' do

@@ -75,20 +75,18 @@ class SensorSectionView: UIView, SectionViewDisplayer {
     }
     
     func adjustSectionView(withSectionName section: String!) {
-        
         self.titleLabel.text = "Sensors Status from \(section!) "
-        //self.place = section!
-        print(FirebaseManager.sharedInstance.serialToPlaceDict!)
+        FirebaseManager.sharedInstance.stopListenForSensorUpdatesOfLastSelectedRasp()
         self.raspSerial = FirebaseManager.sharedInstance.serialToPlaceDict!.filter { (key, value) -> Bool in
                 return value == section!
             }.map { (key, value) -> String in
                 return key }.first!
-        
+        FirebaseManager.sharedInstance.lastSelectedRaspSerial = self.raspSerial
         FirebaseManager.sharedInstance.listenForSensorUpdates(raspSerial: raspSerial) { [unowned self] sensors in
-            self.sensor1NameLabel.text = sensors[0].name
-            self.sensor2NameLabel.text = sensors[2].name
-            self.sensor3NameLabel.text = sensors[1].name
-            self.sensor4NameLabel.text = sensors[3].name
+            self.sensor1NameLabel.text = sensors[0].name ?? ""
+            self.sensor2NameLabel.text = sensors[2].name ?? ""
+            self.sensor3NameLabel.text = sensors[1].name ?? ""
+            self.sensor4NameLabel.text = sensors[3].name ?? ""
             
             self.progressBorderedBarView.primaryColor = UIColor(hue: CGFloat(0.33 - (sensors[0].value * 0.33)), saturation: 1, brightness: 1, alpha: 1)
             self.progressBorderedBarView2.primaryColor = UIColor(hue: CGFloat(0.33 - (sensors[2].value * 0.33)), saturation: 1, brightness: 1, alpha: 1)

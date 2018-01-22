@@ -18,6 +18,7 @@ class FirebaseManager {
     var serialToPlaceDict : Dictionary<String, String>?
     var previousValuesOfSensors = [String: Double]()
     var handlersOfAllRaspsDict = [String: UInt]()
+    var lastSelectedRaspSerial: String?
     
     func addNewSensor(raspSerial: String, name: String!, place: String!) {
         let ref = Database.database().reference()
@@ -37,7 +38,7 @@ class FirebaseManager {
             sensors.removeAll()
             
             if let dict = snapshot.value as? [String: AnyObject] {
-                for dictKey in dict.keys where dictKey != "is_armed" {
+                for dictKey in dict.keys {
                     let sensor = SensorModel()
                     sensor.raspSerial = raspSerial
                     sensor.name = dictKey
@@ -103,6 +104,14 @@ class FirebaseManager {
 //            }
 //
 //        })
+    }
+    
+    func stopListenForSensorUpdatesOfLastSelectedRasp() {
+        if let last = lastSelectedRaspSerial {
+            print("REMOVED SENSOR LISTENER\(last)")
+            let ref = Database.database().reference().child("sensor").child(last)
+            ref.removeObserver(withHandle: handlerSensorUpdates)
+        }
     }
     
     func stopListenForSensorUpdates(raspSerial: String) {
