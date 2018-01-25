@@ -61,8 +61,6 @@ class ViewController: UIViewController {
             if let firstKey = self.sortedKeys.first {
                 StreamManager.sharedInstance.streamVideoFrom(urlString: "http://52.236.165.15:80/hls/\(firstKey).m3u8")
             }
-            
-            
         }
         
         GuardManager.sharedInstance.updateFCMToken(){print("Token updated")}
@@ -83,9 +81,9 @@ class ViewController: UIViewController {
         
         //addLine()
         
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(touchedView))
-        gesture.cancelsTouchesInView = true
-       // self.view.addGestureRecognizer(gesture)
+//        let gesture = UITapGestureRecognizer(target: self.playerView, action: #selector(touchedView))
+//        gesture.cancelsTouchesInView = true
+//        self.view.addGestureRecognizer(gesture)
         
     }
     

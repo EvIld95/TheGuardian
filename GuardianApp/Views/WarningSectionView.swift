@@ -16,43 +16,35 @@ class WarningSectionView: UIView, SectionViewDisplayer {
     @IBOutlet weak var informationLabel: UILabel!
     var lastNotification: Notification?
     var raspSerial: String!
+    let sessionConfig = URLSessionConfiguration.default
+    var session : URLSession!
     
     @IBAction func buttonTapped(button: UIButton!) {
-
-//        let url = URL(fileURLWithPath: Bundle.main.path(forResource: "film", ofType:"avi")!)
-//        let player = AVPlayer(url: url)
-//        let parent = self.parentViewController as! ViewController
-//        let playerLayer = AVPlayerLayer(player: player)
-//        playerLayer.frame = parent.playerView.bounds
-//        parent.playerView.layer.sublayers?.forEach({ (layer) in
-//            layer.removeFromSuperlayer()
-//        })
-//        parent.playerView.layer.addSublayer(playerLayer)
-//        player.play()
-        
         if let notification = lastNotification {
             let urlN = notification.videoURL//"https://firebasestorage.googleapis.com/v0/b/guardapp-ac65a.appspot.com/o/test%2F1516534473580375.avi?alt=media&token=11ec9b23-b268-4b3b-a75c-b4070aa108af"
             let fileName = urlN.split(separator: "/")[4].replacingOccurrences(of: "avi", with: "mp4")
             print(fileName)
             let ref = Storage.storage().reference().child(self.raspSerial).child(fileName)
             let parent = self.parentViewController as! ViewController
-            MBProgressHUD.showAdded(to: parent.playerView, animated: true)
+            MBProgressHUD.showAdded(to: parent.view, animated: true)
             
             ref.downloadURL { url, error in
                 if let _ = error {
                     // Handle any errors
                 } else {
-                    print(url)
-                    let sessionConfig = URLSessionConfiguration.default
-                    let session = URLSession(configuration: sessionConfig)
                     let request = try! URLRequest(url: url!, method: .get)
                     
                     // Create destination URL
                     let documentsUrl:URL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first as URL!
                     let destinationFileUrl = documentsUrl.appendingPathComponent("downloadedFile2.avi")
                     
-                    let task = session.downloadTask(with: request) { (tempLocalUrl, response, error) in
+                    let task = self.session.downloadTask(with: request) { (tempLocalUrl, response, error) in
                         if let tempLocalUrl = tempLocalUrl, error == nil {
+                            let fileManager = FileManager.default
+                            if fileManager.fileExists(atPath: destinationFileUrl.path) {
+                                try! fileManager.removeItem(atPath: destinationFileUrl.path)
+                                print("Removed file")
+                            }
                             
                             do {
                                 try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
@@ -60,7 +52,8 @@ class WarningSectionView: UIView, SectionViewDisplayer {
                                 print("Error creating a file \(destinationFileUrl) : \(writeError)")
                             }
                             
-                            DispatchQueue.main.async {
+                            DispatchQueue.main.sync {
+                                MBProgressHUD.hide(for: parent.view, animated: true)
                                 let player = AVPlayer(url: destinationFileUrl)
                                 let playerLayer = AVPlayerLayer(player: player)
                                 playerLayer.frame = parent.playerView.bounds
@@ -72,7 +65,7 @@ class WarningSectionView: UIView, SectionViewDisplayer {
                             }
                             
                         } else {
-                            print("Failure: %@", error?.localizedDescription);
+                            print("Failure: %@", error!.localizedDescription);
                         }
                     }
                     task.resume()
@@ -83,6 +76,7 @@ class WarningSectionView: UIView, SectionViewDisplayer {
     }
     
     func adjustSectionView(withSectionName section: String!) {
+        self.session = URLSession(configuration: sessionConfig)
         if let section = section {
             
             self.previewButton.layer.cornerRadius = 6
