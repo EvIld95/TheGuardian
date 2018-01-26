@@ -108,9 +108,9 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
         if notification.videoURL != "" {
             let action2 = UIAlertAction(title: "Play", style: .default, handler: { (action) in
                 let urlN = notification.videoURL
-                let fileName = urlN.split(separator: "/")[4].replacingOccurrences(of: "avi", with: "mp4")
+                let fileName = urlN.split(separator: "/")[4]//.replacingOccurrences(of: "avi", with: "mp4")
                 print(fileName)
-                let ref = Storage.storage().reference().child(self.raspSerial).child(fileName)
+                let ref = Storage.storage().reference().child(self.raspSerial).child(String(fileName))
                 let parent = self.parentViewController as! ViewController
                 MBProgressHUD.showAdded(to: parent.view, animated: true)
                 

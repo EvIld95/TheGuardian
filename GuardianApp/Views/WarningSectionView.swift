@@ -22,9 +22,9 @@ class WarningSectionView: UIView, SectionViewDisplayer {
     @IBAction func buttonTapped(button: UIButton!) {
         if let notification = lastNotification {
             let urlN = notification.videoURL//"https://firebasestorage.googleapis.com/v0/b/guardapp-ac65a.appspot.com/o/test%2F1516534473580375.avi?alt=media&token=11ec9b23-b268-4b3b-a75c-b4070aa108af"
-            let fileName = urlN.split(separator: "/")[4].replacingOccurrences(of: "avi", with: "mp4")
+            let fileName = urlN.split(separator: "/")[4]//.replacingOccurrences(of: "avi", with: "mp4")
             print(fileName)
-            let ref = Storage.storage().reference().child(self.raspSerial).child(fileName)
+            let ref = Storage.storage().reference().child(self.raspSerial).child(String(fileName))
             let parent = self.parentViewController as! ViewController
             MBProgressHUD.showAdded(to: parent.view, animated: true)
             
