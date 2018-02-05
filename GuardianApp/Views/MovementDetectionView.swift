@@ -68,7 +68,8 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MovementDetectionCollectionViewCell
-        cell.label.text = historyOfNotifications[indexPath.item].date
+        let notif = historyOfNotifications[indexPath.item].date
+        cell.label.text = notif.dropLast(16).lowercased()
         
         
         if(cell.isSelected) {
@@ -93,7 +94,7 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / 3
+        let width = CGFloat(150)
         let height = collectionView.frame.height - 10
         return CGSize(width: width, height: height)
     }
@@ -101,14 +102,14 @@ class MovementDetectionView: UIView, UICollectionViewDelegate, UICollectionViewD
     @IBAction func buttonTapped(button: UIButton!) {
         let i = lastSelectedIndexPath!.item
         let notification = historyOfNotifications[i]
-        let alertController = UIAlertController(title: "Notification from \(self.place!) on \(historyOfNotifications[i].date)", message: historyOfNotifications[i].message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Notification from \(self.place!) on \(historyOfNotifications[i].date.dropLast(16).lowercased())", message: historyOfNotifications[i].message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(action)
         
         if notification.videoURL != "" {
             let action2 = UIAlertAction(title: "Play", style: .default, handler: { (action) in
                 let urlN = notification.videoURL
-                let fileName = urlN.split(separator: "/")[4]//.replacingOccurrences(of: "avi", with: "mp4")
+                let fileName = urlN.split(separator: "/")[4].replacingOccurrences(of: "avi", with: "mp4")
                 print(fileName)
                 let ref = Storage.storage().reference().child(self.raspSerial).child(String(fileName))
                 let parent = self.parentViewController as! ViewController
