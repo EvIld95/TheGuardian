@@ -16,9 +16,10 @@ class FirebaseManager {
     
     var handlerSensorUpdates: UInt!
     var serialToPlaceDict : Dictionary<String, String>?
-    var previousValuesOfSensors = [String: Double]()
+    var previousValuesOfSensors = [String:[String: Double]]()
     var handlersOfAllRaspsDict = [String: UInt]()
     var lastSelectedRaspSerial: String?
+    
     
     func addNewSensor(raspSerial: String, name: String!, place: String!) {
         let ref = Database.database().reference()
@@ -69,12 +70,17 @@ class FirebaseManager {
                         sensor.name = snapshot.key
                         sensor.value = dict["value"]! as! Double
                         sensor.place = name
-                        if let pv = self.previousValuesOfSensors[sensor.name] {
+                        
+                        if let pv = self.previousValuesOfSensors[raspSerial]?[sensor.name] {
                             if sensor.value! - pv > 0 {
                                 completion(sensor)
                             }
                         }
-                        self.previousValuesOfSensors[sensor.name] = sensor.value
+                        else {
+                            self.previousValuesOfSensors[raspSerial] = [String: Double]()
+                            completion(sensor)
+                        }
+                        self.previousValuesOfSensors[raspSerial]![sensor.name] = sensor.value
                     }
                 })
             }

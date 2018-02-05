@@ -146,7 +146,7 @@ class ViewController: UIViewController {
             
             var message = ""
             
-            if(sensor.value > 0.3 && sensor.name != "TempSensor") {
+            if(sensor.value > 0.35 && sensor.name != "TempSensor") {
                 message += info[sensor.name]!
             } else if(sensor.value > 30) {
                 message += info[sensor.name]!
