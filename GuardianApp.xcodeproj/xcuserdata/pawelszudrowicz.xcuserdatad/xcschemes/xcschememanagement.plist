@@ -4,10 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>GuardianApp.xcscheme_^#shared#^_</key>
+		<key>GuardianApp.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>17</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>F71B74651FC7562800BE0567</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F771E40D20121B360034D763</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
