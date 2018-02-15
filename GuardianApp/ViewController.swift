@@ -317,16 +317,24 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
             })
             
             alertController.addAction(UIAlertAction(title: "SEND", style: .default, handler: { (action) in
-                MBProgressHUD.showAdded(to: self.view, animated: true)
-                GuardManager.sharedInstance.addRaspberryToDatabase(serial: alertController.textFields![0].text!) {
-                    GuardManager.sharedInstance.getMyRaspberries { (response) in
-                        guard let rasp = response as? RaspberriesModel else { return }
-                        
-                        self.updateRaspberries(rasp: rasp)
-                        MBProgressHUD.hide(for: self.view, animated: true)
-                        self.collectionView.reloadData()
-                        self.addFirebaseListener()
+                let x = alertController.textFields![0].text!
+                if (x == "00000000c36c7518") || (x == "00000000fb021b9a") {
+                    MBProgressHUD.showAdded(to: self.view, animated: true)
+                    GuardManager.sharedInstance.addRaspberryToDatabase(serial: alertController.textFields![0].text!) {
+                        GuardManager.sharedInstance.getMyRaspberries { (response) in
+                            guard let rasp = response as? RaspberriesModel else { return }
+                            
+                            self.updateRaspberries(rasp: rasp)
+                            MBProgressHUD.hide(for: self.view, animated: true)
+                            self.collectionView.reloadData()
+                            self.addFirebaseListener()
+                        }
                     }
+                }
+                else {
+                    let aller = UIAlertController(title: "Error", message: "Unknown guard serial number", preferredStyle: .alert)
+                    aller.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(aller, animated: true, completion: nil)
                 }
                 
             }))
